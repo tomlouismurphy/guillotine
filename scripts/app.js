@@ -20,6 +20,7 @@ const shuffle = (array) => {
 
 const dealDay = () => {
 	day += 1;
+	//to insert later - if day = 4, end game
 	shuffle(deckNobles);
 	for (let i = 0; i < 12; i++){
 		queueNobles.push(deckNobles[i]);
@@ -37,10 +38,12 @@ const assembleNobles = () => {
 		$h3.text(queueNobles[i].name);
 		$newdiv.append($h3);
 		$newdiv.addClass('inLine');
+		$newdiv.addClass(queueNobles[i].color);
 		$('.nobleLine').append($newdiv);
 	}
 	buttonFunction();
 	buttonRefunction();
+	//start of tomorrow - if queueNobles is empty, launch modal with score update
 };
 
 const buttonFunction = () => {
@@ -85,9 +88,9 @@ class Player {
 		this.score = this.score + x;
 		this.myNobles.push(queueNobles[0]);
 		queueNobles.shift();
+		endTurn();
 		$('.nobleLine').empty();
 		assembleNobles();
-		endTurn();
 	}
 }
 
@@ -111,11 +114,19 @@ const retotalPoints = () => {
 		for (j = 0; j < gamePlayers[i].myNobles.length; j++){
 			gamePlayers[i].score += gamePlayers[i].myNobles[j].points;
 		}
-	if (gamePlayers[i].twoPointBonus === true){
+		if (gamePlayers[i].twoPointBonus === true){
 			gamePlayers[i].score += 2;
 		}
-	if (gamePlayers[i].twoPointPenalty === true){
+		if (gamePlayers[i].twoPointPenalty === true){
 			gamePlayers[i].score -= 2;
+		}
+		if (gamePlayers[i].grayEqualsOne === true){
+			for (j = 0; j < gamePlayers[i].myNobles.length; j++){
+				if (gamePlayers[i].myNobles[j].color === 'gray'){
+					gamePlayers[i].score -= gamePlayers[i].myNobles[j].points;
+					gamePlayers[i].score += 1;
+				}
+			}
 		}
 	}
 }

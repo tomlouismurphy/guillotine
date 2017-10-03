@@ -351,7 +351,305 @@ const moveNobleForwardFour = {
 deckActions.push(moveNobleForwardFour);
 deckActions.push(moveNobleForwardFour);
 
-//Action Card: 
+//Action Card: "Friend of the Queen"
+//Move a noble backward up to 2 places in line.
+//NOTE: FUNCTIONALITY TO PICK EITHER 1 OR 2 PLACES
+//IS NOT CURRENTLY COMPLETE
+const moveNobleBackwardTwo = {
+	name: 'Friend of the Queen',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i > queueNobles.length - 3){
+					return i;
+				} else {
+					let friend;
+					window.friend = i;
+				} 
+			}
+		}
+		queueNobles.splice((friend + 3), 0, queueNobles[friend]);
+		queueNobles.splice((friend), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return friend;
+	}
+}
+deckActions.push(moveNobleBackwardTwo);
+deckActions.push(moveNobleBackwardTwo);
+
+//Action Card: "Fainting Spell"
+//Move a noble backward up to 3 places in line.
+//NOTE: FUNCTIONALITY TO PICK 1, 2 OR 3 PLACES
+//IS NOT CURRENTLY COMPLETE
+const moveNobleBackwardThree = {
+	name: 'Fainting Spell',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i > queueNobles.length - 4){
+					return i;
+				} else {
+					let faint;
+					window.faint = i;
+				} 
+			}
+		}
+		queueNobles.splice((faint + 4), 0, queueNobles[faint]);
+		queueNobles.splice(faint, 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return faint;
+	}
+}
+deckActions.push(moveNobleBackwardThree);
+
+//Action Card: "Civic Pride"
+//Move a Green noble forward exactly 2 places in line.
+const moveNobleForwardTwoGreen = {
+	name: 'Civic Pride',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		if ($('.clicked').hasClass('green') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 2){
+					return i;
+				} else {
+					let pushedGreen;
+					window.pushedGreen = i;
+				} 
+			}
+		}
+		queueNobles.splice((pushedGreen - 2), 0, queueNobles[pushedGreen]);
+		queueNobles.splice((pushedGreen + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return pushedGreen;
+	}
+}
+deckActions.push(moveNobleForwardTwoGreen);
+
+//Action Card: "Majesty"
+//Move a Purple noble forward exactly 2 places in line.
+const moveNobleForwardTwoPurple = {
+	name: 'Majesty',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		if ($('.clicked').hasClass('purple') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 2){
+					return i;
+				} else {
+					let pushedPurple;
+					window.pushedPurple = i;
+				} 
+			}
+		}
+		queueNobles.splice((pushedPurple - 2), 0, queueNobles[pushedPurple]);
+		queueNobles.splice((pushedPurple + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return pushedPurple;
+	}
+}
+deckActions.push(moveNobleForwardTwoPurple);
+
+//Action Card: "Military Might"
+//Move a Red noble forward exactly 2 places in line.
+const moveNobleForwardTwoRed = {
+	name: 'Military Might',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		if ($('.clicked').hasClass('red') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 2){
+					return i;
+				} else {
+					let pushedRed;
+					window.pushedRed = i;
+				} 
+			}
+		}
+		queueNobles.splice((pushedRed - 2), 0, queueNobles[pushedRed]);
+		queueNobles.splice((pushedRed + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return pushedRed;
+	}
+}
+deckActions.push(moveNobleForwardTwoRed);
+
+//Action Card: "Fled to England"
+//Discard any noble in line.
+const discardNoble = {
+	name: 'Fled to England',
+	actionCard () {
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				discardedNobles.push(queueNobles[i]);
+				queueNobles.splice(i, 1);
+				$('.nobleLine').empty();
+				assembleNobles();
+				return i;
+			}
+		}
+	}
+}
+deckActions.push(discardNoble);
+
+//Action Card: "Public Demand"
+//Move any noble in line to the front of the line.
+const frontOfLine = {
+	name: 'Public Demand',
+	actionCard () {
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				queueNobles.unshift(queueNobles[i]);
+				queueNobles.splice((i + 1), 1);
+				$('.nobleLine').empty();
+				assembleNobles();
+				return i;
+			}
+		}
+	}
+}
+deckActions.push(frontOfLine);
+
+//Action Card: "Clothing Swap"
+//Choose any noble in line and discard it.
+//Replace it with the top noble from the noble deck.
+const dealReplacement = {
+	name: 'Clothing Swap',
+	actionCard () {
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				discardedNobles.push(queueNobles[i]);
+				queueNobles[i] = deckNobles[0];
+				deckNobles.shift();
+				$('.nobleLine').empty();
+				assembleNobles();
+				return i;
+			}
+		}
+	}
+}
+deckActions.push(dealReplacement);
+
+//Action Card: "Missed!"
+//Choose a player. That player must place the last
+//noble he or she collected at the end of the line.
+const noblePutBack = {
+	name: 'Missed!',
+	actionCard () {
+		queueNobles.push(gamePlayers[1].myNobles[gamePlayers[1].myNobles.length - 1]);
+		gamePlayers[1].myNobles.pop();
+		$('.nobleLine').empty();
+		assembleNobles();
+		retotalPoints();
+	}
+}
+deckActions.push(noblePutBack);
+
+//Action Card: "Indifferent Public"
+//Put this card in front of you.
+//Any Gray nobles in your score pile
+//are worth 1 point instead of their normal values.
+const changeGray = {
+	name: 'Indifferent Public',
+	actionCard () {
+		gamePlayers[0].grayEqualsOne = true;
+		retotalPoints();
+	}
+}
+deckActions.push(changeGray);
+
+//Action Card: "Lack of Faith"
+//If there are any Blue nobles in line, move the one
+//nearest the front of the line to the front of the line.
+const blueToFront = {
+	name: 'Lack of Faith',
+	actionCard () {
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('blue')){
+				queueNobles.unshift(queueNobles[i]);
+				queueNobles.splice((i + 1), 1);
+				$('.nobleLine').empty();
+				assembleNobles();
+				return i;
+			}
+		}
+	}
+}
+deckActions.push(blueToFront);
+
+//Action Card: "Political Influence"
+//Draw 3 additional action cards at the end of your turn.
+//Do not collect a noble this turn.
+const drawActions = {
+	name: 'Political Influence',
+	actionCard () {
+		for (i = 0; i < 3; i++){
+			gamePlayers[0].myActions.push(deckActions[0]);
+			deckActions.shift();
+		}
+		endTurn();
+	}
+}
+deckActions.push(drawActions);
+deckActions.push(drawActions);
+
+//Action Card: "Confusion in Line"
+//Choose a player. Randomly rearrange the line just before
+//that player collects his or her next noble.
+const rearrangeNobles = {
+	name: 'Confusion in Line',
+	actionCard () {
+		gamePlayers[0].takeNoble();
+		shuffle(queueNobles);
+		$('.nobleLine').empty();
+		assembleNobles();
+	}
+}
+deckActions.push(rearrangeNobles);
+
+//Action Card: "Scarlet Pimpernel"
+//The day ends after you finish your turn.
+//Discard any nobles remaining in line.
+const endDay = {
+	name: 'Scarlet Pimpernel',
+	actionCard () {
+		gamePlayers[0].takeNoble();
+		const temp = queueNobles.length;
+		for (let i = 0; i < temp; i++){
+			discardedNobles.push(queueNobles[0]);
+			queueNobles.shift();
+		}
+		$('.nobleLine').empty();
+		assembleNobles();
+	}
+}
+deckActions.push(endDay);
 
 //ACTION CARD DEAL
 
