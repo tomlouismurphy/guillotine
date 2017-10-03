@@ -12,4 +12,6 @@ Conversely, people learning the game, especially in a one-on-one context, may be
 
 People may be particularly confused by the mechanisms in the game that award bonus points for specific classes of noble or remove collected nobles from one's total score. A movelog could be useful to track through score or property changes.
 
-This is a game where the rules are likely possible enough for kids to play, but it might not be ideal from a thematic perspective - guillotines and the like. A reskin where nobody dies, as much as I would be grumpy about making it, might be desirable.
+This is a game where the rules are likely possible enough for kids to play, but it might not be ideal from a thematic perspective - guillotines and the like. Might need a reskin that plays down the death.
+
+Sometimes people are bad at math. Action cards that move nobles ahead 3 or 4 places in the line might be miscalculated by the player, so they'll need confirmation of the place where the card will be going.

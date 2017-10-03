@@ -213,13 +213,145 @@ deckActions.push(dealNobles);
 //Move a noble forward exactly 1 place in line.
 const moveNobleForwardOne = {
 	name: 'Stumble',
-	actionCard (x) {
-		queueNobles.splice((x - 1), 0, queueNobles[x]);
-		queueNobles.splice((x + 1), 1);
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 1){
+					return i;
+				} else {
+					let stumbler;
+					window.stumbler = i;
+				}
+			}
+		}
+		queueNobles.splice((stumbler - 1), 0, queueNobles[stumbler]);
+		queueNobles.splice((stumbler + 1), 1);
 		$('.nobleLine').empty();
 		assembleNobles();
+		return stumbler;
 	}
 }
+deckActions.push(moveNobleForwardOne);
+deckActions.push(moveNobleForwardOne);
+
+//Action Card: "Pushed"
+//Move a noble forward exactly 2 places in line.
+const moveNobleForwardTwo = {
+	name: 'Pushed',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 2){
+					return i;
+				} else {
+					let pushed;
+					window.pushed = i;
+				} 
+			}
+		}
+		queueNobles.splice((pushed - 2), 0, queueNobles[pushed]);
+		queueNobles.splice((pushed + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return pushed;
+	}
+}
+deckActions.push(moveNobleForwardTwo);
+deckActions.push(moveNobleForwardTwo);
+
+//Action Card: "L'Idiot"
+//Move a noble forward up to 2 places in line.
+//NOTE: FUNCTIONALITY TO PICK EITHER 1 OR 2 PLACES
+//IS NOT CURRENTLY COMPLETE
+const moveNobleForwardTwoVariable = {
+	name: 'L\'Idiot',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 2){
+					return i;
+				} else {
+					let idiot;
+					window.idiot = i;
+				} 
+			}
+		}
+		queueNobles.splice((idiot - 2), 0, queueNobles[idiot]);
+		queueNobles.splice((idiot + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return idiot;
+	}
+}
+deckActions.push(moveNobleForwardTwoVariable);
+deckActions.push(moveNobleForwardTwoVariable);
+
+//Action Card: "Tis a Far Better Thing"
+//Move a noble forward exactly 3 places in line.
+const moveNobleForwardThree = {
+	name: 'Tis a Far Better Thing',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 3){
+					return i;
+				} else {
+					let sydney;
+					window.sydney = i;
+				} 
+			}
+		}
+		queueNobles.splice((sydney - 3), 0, queueNobles[sydney]);
+		queueNobles.splice((sydney + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return sydney;
+	}
+}
+deckActions.push(moveNobleForwardThree);
+deckActions.push(moveNobleForwardThree);
+
+//Action Card: "Ignoble Noble"
+//Move a noble forward exactly 4 places in line.
+const moveNobleForwardFour = {
+	name: 'Ignoble Noble',
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i < 4){
+					return i;
+				} else {
+					let ignoble;
+					window.ignoble = i;
+				} 
+			}
+		}
+		queueNobles.splice((ignoble - 4), 0, queueNobles[ignoble]);
+		queueNobles.splice((ignoble + 1), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		return ignoble;
+	}
+}
+deckActions.push(moveNobleForwardFour);
+deckActions.push(moveNobleForwardFour);
+
+//Action Card: 
 
 //ACTION CARD DEAL
 

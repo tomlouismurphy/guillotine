@@ -28,8 +28,6 @@ const dealDay = () => {
 		deckNobles.shift();
 	}
 	assembleNobles();
-	buttonFunction();
-	buttonRefunction();
 };
 
 const assembleNobles = () => {
@@ -38,23 +36,24 @@ const assembleNobles = () => {
 		const $h3 = $('<h3/>');
 		$h3.text(queueNobles[i].name);
 		$newdiv.append($h3);
-		$newdiv.addClass('unclicked');
+		$newdiv.addClass('inLine');
 		$('.nobleLine').append($newdiv);
 	}
+	buttonFunction();
+	buttonRefunction();
 };
 
 const buttonFunction = () => {
-	$('.unclicked').on('click', (e) => {
+	$('.inLine').on('click', (e) => {
 		$(e.target).addClass('clicked');
-		$(e.target).removeClass('unclicked');
+		buttonRefunction();
 	});
 };
 
 const buttonRefunction = () => {
 	$('.clicked').on('click', (e) => {
-		console.log($(e.target));
-		$(e.target).parent().addClass('unclicked');
-		$(e.target).parent().removeClass('clicked');
+		$($(e.target)[0]).removeClass('clicked');
+		buttonFunction();
 	});
 };
 
