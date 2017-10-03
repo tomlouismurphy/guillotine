@@ -1,0 +1,18 @@
+.unclicked {
+	height: 50px;
+	width: 250px;
+	border: 1px solid black;
+	margin: 5px;
+}
+
+.clicked {
+	height: 50px;
+	width: 250px;
+	border: 2px solid red;
+	margin: 5px;
+}
+
+.nobleLine {
+	height: 1000px;
+	width: 1000px;
+}
