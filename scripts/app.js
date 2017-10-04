@@ -83,6 +83,8 @@ const assembleNobles = () => {
 
 //Displays the action cards in hand for the
 //player whose turn it is.
+//Functionality also installed to
+//display card effects upon clicking info button
 const assembleActions = () => {
 	for (let i = 0; i < gamePlayers[0].myActions.length; i++){
 		const $newdiv = $('<div></div>');
@@ -99,6 +101,13 @@ const assembleActions = () => {
 		$newdiv.append($datadiv);
 		$newdiv.addClass('inHand');
 		$('.actionHand').append($newdiv);
+	}
+	if ($('.confirmation').children().length === 0){
+		const $confirmationbutton = $('<button/>');
+		$confirmationbutton.text('Use Selected Action Card');
+		$confirmationbutton.addClass('confirmationbutton');
+		$('.confirmation').append($confirmationbutton);
+		confirmationOperation();
 	}
 };
 
@@ -231,10 +240,38 @@ const launchGame = () => {
 	dealActions();
 }
 
+//Starts the game after clicking a "Begin!" button
 $('.starter').on('click', (e) => {
 		$('.starter').remove();
+		$('.opener').css('display', 'block');
 		launchGame();
 	});
+
+//Employs and then discards a selected action card
+const confirmationOperation = () => {
+	$('.confirmationbutton').on('click', (e) => {
+		if ($('.actionHand').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 1; i < gamePlayers[0].myActions.length; i++){
+			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
+				gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[i]);
+				gamePlayers[0].myActions.splice((i + 1), 1);
+			}
+		}
+		gamePlayers[0].myActions[0].actionCard();
+		discardedActions.push(gamePlayers[0].myActions[0]);
+		gamePlayers[0].myActions.shift();
+		$('.actionHand').empty();
+		assembleActions();
+	})
+}
+
+//Adds noble to current player's score pile
+//when button is clicked
+$('#collector').on('click', (e) => {
+	gamePlayers[0].takeNoble();
+})
 
 //Installing functionality for modals
 const $modal = $('#myModal');

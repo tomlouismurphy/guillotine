@@ -212,7 +212,7 @@ const moveNobleForwardOne = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 1){
-					return i;
+					return 0;
 				} else {
 					let stumbler;
 					window.stumbler = i;
@@ -240,7 +240,7 @@ const moveNobleForwardTwo = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
-					return i;
+					return 0;
 				} else {
 					let pushed;
 					window.pushed = i;
@@ -271,7 +271,7 @@ const moveNobleForwardTwoVariable = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
-					return i;
+					return 0;
 				} else {
 					let idiot;
 					window.idiot = i;
@@ -299,7 +299,7 @@ const moveNobleForwardThree = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 3){
-					return i;
+					return 0;
 				} else {
 					let sydney;
 					window.sydney = i;
@@ -327,7 +327,7 @@ const moveNobleForwardFour = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 4){
-					return i;
+					return 0;
 				} else {
 					let ignoble;
 					window.ignoble = i;
@@ -358,7 +358,7 @@ const moveNobleBackwardTwo = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i > queueNobles.length - 3){
-					return i;
+					return 0;
 				} else {
 					let friend;
 					window.friend = i;
@@ -389,7 +389,7 @@ const moveNobleBackwardThree = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i > queueNobles.length - 4){
-					return i;
+					return 0;
 				} else {
 					let faint;
 					window.faint = i;
@@ -421,7 +421,7 @@ const moveNobleForwardTwoGreen = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
-					return i;
+					return 0;
 				} else {
 					let pushedGreen;
 					window.pushedGreen = i;
@@ -453,7 +453,7 @@ const moveNobleForwardTwoPurple = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
-					return i;
+					return 0;
 				} else {
 					let pushedPurple;
 					window.pushedPurple = i;
@@ -485,7 +485,7 @@ const moveNobleForwardTwoRed = {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
-					return i;
+					return 0;
 				} else {
 					let pushedRed;
 					window.pushedRed = i;

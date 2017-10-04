@@ -12,12 +12,15 @@ Conversely, people learning the game, especially in a one-on-one context, may be
 
 People may be particularly confused by the mechanisms in the game that award bonus points for specific classes of noble or remove collected nobles from one's total score. A movelog could be useful to track through score or property changes.
 
-This is a game where the rules are likely possible enough for kids to play, but it might not be ideal from a thematic perspective - guillotines and the like. Might need a reskin that plays down the death.
+This is a game where the rules are likely possible enough for kids to play, but it would not be ideal from a thematic perspective - guillotines and the like. Might need a reskin that plays down the death.
 
 Sometimes people are bad at math. Action cards that move nobles ahead 3 or 4 places in the line might be miscalculated by the player, so they'll need confirmation of the place where the card will be going.
 
 TODO - afternoon, 10/4
--create button to move selected action card to 0 position in index and deploy card
 -perhaps a confirmation modal to pop up after action card is selected
--create button to take noble
 -in between playing the action card and taking the noble, the action card functionality is disabled
+-there is a glitch in the tradeHand function as a result of how I have written the code for employing an action card. Also applies to drawActions and rearrangeNobles.
+-need to write a function that, if the action deck runs out of cards, reshuffles the discardedActions array into the action deck.
+-fix glitch where h3's can gain the class "clicked"
+-if I click an action card but no corresponding card in the queue the action card still discards
+-show point value of each noble on its card
