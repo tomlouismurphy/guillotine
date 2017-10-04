@@ -26,6 +26,7 @@ const shuffle = (array) => {
 //Function to deal out nobles deck and start new day.
 const dealDay = () => {
 	day += 1;
+	$('#daydisplay').text('Day ' + day);
 	shuffle(deckNobles);
 	for (let i = 0; i < 12; i++){
 		queueNobles.push(deckNobles[i]);
@@ -63,12 +64,12 @@ const assembleNobles = () => {
 			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
 			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
-			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[0].name + 'is the winner!')
+			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[0].name + ' is the winner!')
 		} else if (day === 3 && gamePlayers[1].score > gamePlayers[0].score){
 			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
 			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
-			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[1].name + 'is the winner!')
+			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[1].name + ' is the winner!')
 		} else if (day === 3 && gamePlayers[0].score === gamePlayers[1].score){
 			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
@@ -123,11 +124,10 @@ class Player {
 
 	};
 	takeNoble(){
-		let x = queueNobles[0].points;
-		this.score = this.score + x;
 		this.myNobles.push(queueNobles[0]);
 		queueNobles.shift();
 		endTurn();
+		retotalPoints();
 		$('.nobleLine').empty();
 		assembleNobles();
 	}
@@ -147,6 +147,13 @@ const endTurn = () => {
 	gamePlayers.reverse();
 	gamePlayers[0].myTurn = true;
 	gamePlayers[1].myTurn = false;
+	if (gamePlayers[0].name === 'Player One'){
+		$('#player1score').css('border', '2px dashed purple');
+		$('#player2score').css('border', '1px solid gray');
+	} else {
+		$('#player1score').css('border', '1px solid gray');
+		$('#player2score').css('border', '2px dashed purple');
+	}
 }
 
 //Updates score tally for each player after a noble has
@@ -171,6 +178,13 @@ const retotalPoints = () => {
 				}
 			}
 		}
+	}
+	if (gamePlayers[0].name === 'Player One'){
+		$('#p1score').text('Player One: ' + gamePlayers[0].score);
+		$('#p2score').text('Player Two: ' + gamePlayers[1].score);
+	} else {
+		$('#p1score').text('Player One: ' + gamePlayers[1].score);
+		$('#p2score').text('Player Two: ' + gamePlayers[0].score);
 	}
 }
 
