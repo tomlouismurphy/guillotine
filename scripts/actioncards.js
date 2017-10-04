@@ -112,7 +112,7 @@ deckActions.push(collectExtra);
 //Action Card: "After You..."
 const bestowNoble = {
 	name: 'After You...',
-	description: 'Put the noble at the front of the line into your opponent\'s score pile',
+	description: 'Put the noble at the front of the line into your opponent\'s score pile.',
 	actionCard() {
 		let x = queueNobles[0].points;
 		gamePlayers[1].score = gamePlayers[1].score + x;
@@ -381,7 +381,7 @@ deckActions.push(moveNobleBackwardTwo);
 //IS NOT CURRENTLY COMPLETE
 const moveNobleBackwardThree = {
 	name: 'Fainting Spell',
-	description: 'Move a noble backward up to 3 places in line',
+	description: 'Move a noble backward up to 3 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -504,7 +504,7 @@ deckActions.push(moveNobleForwardTwoRed);
 //Action Card: "Fled to England"
 const discardNoble = {
 	name: 'Fled to England',
-	description: 'Discard any noble in line',
+	description: 'Discard any noble in line.',
 	actionCard () {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){

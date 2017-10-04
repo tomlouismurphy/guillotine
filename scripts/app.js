@@ -56,22 +56,22 @@ const assembleNobles = () => {
 	if (queueNobles.length === 0){
 		$('#myModal').css('display', 'block');
 		if (day < 3){
-			$('#score-update').text('At the end of day ' + day + ', ' + gamePlayers[0].name + ' has collected ' 
+			$('#modal-update').text('At the end of day ' + day + ', ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
 			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
 			+ ' nobles and scored ' + gamePlayers[1].score + ' points.')
 		} else if (day === 3 && gamePlayers[0].score > gamePlayers[1].score){
-			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
+			$('#modal-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
 			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
 			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[0].name + ' is the winner!')
 		} else if (day === 3 && gamePlayers[1].score > gamePlayers[0].score){
-			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
+			$('#modal-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
 			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
 			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[1].name + ' is the winner!')
 		} else if (day === 3 && gamePlayers[0].score === gamePlayers[1].score){
-			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
+			$('#modal-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
 			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
 			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
 			+ ' nobles and scored ' + gamePlayers[1].score + ' points. Tie game!')
@@ -89,6 +89,14 @@ const assembleActions = () => {
 		const $h3 = $('<h3/>');
 		$h3.text(gamePlayers[0].myActions[i].name);
 		$newdiv.append($h3);
+		const $button = $('<button/>');
+		$button.text('Info');
+		$button.addClass('descriptor');
+		$newdiv.append($button);
+		const $datadiv = $('<div/>');
+		$datadiv.data('info', gamePlayers[0].myActions[i].description);
+		$datadiv.addClass('datadiv');
+		$newdiv.append($datadiv);
 		$newdiv.addClass('inHand');
 		$('.actionHand').append($newdiv);
 	}
@@ -105,6 +113,11 @@ const buttonFunction = () => {
 		$(e.target).addClass('clicked');
 		buttonRefunction();
 	});
+	$('.descriptor').on('click', (e) => {
+		$('#infoModal').css('display', 'block');
+		let datum = $($(e.target).parent().children()[2]).data('info');
+		$('#infomodal-update').text(datum);
+	})
 };
 
 //Allows selected noble cards to be deselected
@@ -147,6 +160,9 @@ class Player {
 		retotalPoints();
 		$('.nobleLine').empty();
 		assembleNobles();
+		$('.actionHand').empty();
+		assembleActions();
+		buttonFunction();
 	}
 };
 
@@ -220,14 +236,23 @@ $('.starter').on('click', (e) => {
 		launchGame();
 	});
 
-//Installing functionality for modal
+//Installing functionality for modals
 const $modal = $('#myModal');
 
-const $span = $($('.close')[0]);
+const $span = $($('#closeScore')[0]);
 
 $span.on('click', (e) => {
     $modal.css('display', 'none');
     if (day < 3){
     	dealDay();
     }
+});
+
+const $modal2 = $('#infoModal');
+
+const $span2 = $($('#closeInfo')[0]);
+
+$span2.on('click', (e) => {
+    $modal2.css('display', 'none');
+    $('button').removeClass('clicked');
 });

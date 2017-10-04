@@ -6,21 +6,19 @@
 }
 
 .inHand {
-	height: 50px;
+	height: 100px;
 	width: 250px;
 	border: 1px solid black;
 	margin: 5px;
 }
 
 .clicked {
-	height: 50px;
-	width: 250px;
 	border: 3px solid yellow;
 	margin: 5px;
 }
 
 .nobleLine {
-	height: 1000px;
+	height: 900px;
 	width: 1000px;
 	clear: both;
 	margin: 0 auto;
@@ -48,10 +46,6 @@
 
 .scorekeeping {
 	display: block;
-}
-
-.starter {
-	height: 50%;
 }
 
 #player1score {
