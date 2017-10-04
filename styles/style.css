@@ -5,10 +5,17 @@
 	margin: 5px;
 }
 
+.inHand {
+	height: 50px;
+	width: 250px;
+	border: 1px solid black;
+	margin: 5px;
+}
+
 .clicked {
 	height: 50px;
 	width: 250px;
-	border: 2px solid red;
+	border: 3px solid yellow;
 	margin: 5px;
 }
 
@@ -19,8 +26,32 @@
 	margin: 0 auto;
 }
 
+.green {
+	background-color: green;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.red {
+	background-color: red;
+}
+
+.gray {
+	background-color: gray;
+}
+
+.purple {
+	background-color: purple;
+}
+
 .scorekeeping {
 	display: block;
+}
+
+.starter {
+	height: 50%;
 }
 
 #player1score {

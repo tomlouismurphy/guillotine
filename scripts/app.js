@@ -81,10 +81,27 @@ const assembleNobles = () => {
 	buttonRefunction();
 };
 
+//Displays the action cards in hand for the
+//player whose turn it is.
+const assembleActions = () => {
+	for (let i = 0; i < gamePlayers[0].myActions.length; i++){
+		const $newdiv = $('<div></div>');
+		const $h3 = $('<h3/>');
+		$h3.text(gamePlayers[0].myActions[i].name);
+		$newdiv.append($h3);
+		$newdiv.addClass('inHand');
+		$('.actionHand').append($newdiv);
+	}
+};
+
 //Allows noble cards to be selected for modification
-//by action cards
+//by action cards, or action cards to be selected for use.
 const buttonFunction = () => {
 	$('.inLine').on('click', (e) => {
+		$(e.target).addClass('clicked');
+		buttonRefunction();
+	});
+	$('.inHand').on('click', (e) => {
 		$(e.target).addClass('clicked');
 		buttonRefunction();
 	});
@@ -144,6 +161,8 @@ const playerSelect = () => {
 
 //Ends the turn of the current player and passes play to the next.
 const endTurn = () => {
+	gamePlayers[0].myActions.push(deckActions[0]);
+	deckActions.shift();
 	gamePlayers.reverse();
 	gamePlayers[0].myTurn = true;
 	gamePlayers[1].myTurn = false;
@@ -187,6 +206,19 @@ const retotalPoints = () => {
 		$('#p2score').text('Player Two: ' + gamePlayers[0].score);
 	}
 }
+
+//deploys all functions needed before first move
+//deals out nobles, action cards, assigns players
+const launchGame = () => {
+	playerSelect();
+	dealDay();
+	dealActions();
+}
+
+$('.starter').on('click', (e) => {
+		$('.starter').remove();
+		launchGame();
+	});
 
 //Installing functionality for modal
 const $modal = $('#myModal');

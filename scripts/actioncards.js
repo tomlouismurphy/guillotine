@@ -7,10 +7,9 @@ const discardedActions = [];
 //ACTION CARD FUNCTIONS
 
 //Action Card: "Mass Confusion" 
-//Returns nobles to deck 
-//and deals out new queue of nobles.
 const newLine = {	
 	name: 'Mass Confusion',
+	description: 'Returns nobles to deck and deals out new queue of nobles.',
 	actionCard () {
 		let lengthRedeal = queueNobles.length;
 		while (0 < queueNobles.length){
@@ -31,10 +30,9 @@ const newLine = {
 deckActions.push(newLine);
 
 //Action Card: "Rain Delay"
-//Shuffle all players' hands into the action deck
-//and deal out 5 new action cards to each player.
 const newHand = {
 	name: 'Rain Delay',
+	description: 'Shuffle all players\' hands into the action deck and deal out 5 new action cards to each player.',
 	actionCard () {
 		for (let i = 0; i < 2; i++){
 			while (0 < gamePlayers[i].myActions.length){
@@ -58,9 +56,9 @@ const newHand = {
 deckActions.push(newHand);
 
 //Action Card: "The Long Walk"
-//Reverse the order of the line.
 const reverseNobles = {
 	name: 'The Long Walk',
+	description: 'Reverse the order of the line.',
 	actionCard () {
 		queueNobles.reverse();
 		$('.nobleLine').empty();
@@ -70,9 +68,9 @@ const reverseNobles = {
 deckActions.push(reverseNobles);
 
 //Action Card: "Missing Heads"
-//Your opponent loses a random noble from his/her score pile.
 const discardNobleRandom = {
 	name: 'Missing Heads',
+	description: 'Your opponent loses a random noble from his/her score pile.',
 	actionCard () {
 		const randomCard = Math.floor(Math.random() * gamePlayers[1].myNobles.length);
 		discardedNobles.push(gamePlayers[1].myNobles[randomCard])
@@ -83,9 +81,9 @@ const discardNobleRandom = {
 deckActions.push(discardNobleRandom);
 
 //Action Card: "Forced Break"
-//All other players must discard an action card at random.
 const discardActionRandom = {
 	name: 'Forced Break',
+	description: 'Your opponent must discard an action card at random.',
 	actionCard () {
 		const randomCard = Math.floor(Math.random() * gamePlayers[1].myActions.length);
 		discardedActions.push(gamePlayers[1].myActions[randomCard])
@@ -95,10 +93,9 @@ const discardActionRandom = {
 deckActions.push(discardActionRandom);
 
 //Action Card: "Double Feature"
-//Collect an additional noble from the front
-//of the line this turn.
 const collectExtra = {
 	name: 'Double Feature',
+	description: 'Collect an additional noble from the front of the line this turn.',
 	actionCard() {
 		let x = queueNobles[0].points;
 		gamePlayers[0].score = gamePlayers[0].score + x;
@@ -113,10 +110,9 @@ deckActions.push(collectExtra);
 deckActions.push(collectExtra);
 
 //Action Card: "After You..."
-//Put the noble at the front of the line
-//into another player's score pile.
 const bestowNoble = {
 	name: 'After You...',
+	description: 'Put the noble at the front of the line into your opponent\'s score pile',
 	actionCard() {
 		let x = queueNobles[0].points;
 		gamePlayers[1].score = gamePlayers[1].score + x;
@@ -130,9 +126,9 @@ const bestowNoble = {
 deckActions.push(bestowNoble);
 
 //Action Card: "Information Exchange"
-//Trade hands with another player.
 const tradeHand = {
 	name: 'Information Exchange',
+	description: 'Trade hands with your opponent.',
 	actionCard () {
 		const newArrayOne = [];
 		for (i = 0; i < gamePlayers[0].myActions.length; i++){
@@ -155,10 +151,9 @@ const tradeHand = {
 deckActions.push(tradeHand);
 
 //Action Card: "Bribed Guards"
-//Move the noble at the front of the line
-//to the end of the line.
 const backOfLine = {
 	name: "Bribed Guards",
+	description: 'Move the noble at the front of the line to the end of the line.',
 	actionCard () {
 		queueNobles.push(queueNobles[0]);
 		queueNobles.shift();
@@ -169,10 +164,9 @@ const backOfLine = {
 deckActions.push(backOfLine);
 
 //Action Card: "Tough Crowd"
-//Put this card in front of another player.
-//It is worth -2 points to that player.
 const twoPointsPenalty = {
 	name: 'Tough Crowd',
+	description: 'Assign this card to your opponent. It is worth -2 points to that player.',
 	actionCard () {
 		gamePlayers[1].twoPointPenalty = true;
 		retotalPoints();
@@ -181,10 +175,9 @@ const twoPointsPenalty = {
 deckActions.push(twoPointsPenalty);
 
 //Action Card: "Fountain of Blood"
-//Put this card in front of you.
-//It is worth 2 points.
 const twoPointsBonus = {
 	name: 'Fountain of Blood',
+	description: 'Assign this card to yourself. It is worth 2 points.',
 	actionCard () {
 		gamePlayers[0].twoPointBonus = true;
 		retotalPoints();
@@ -193,10 +186,9 @@ const twoPointsBonus = {
 deckActions.push(twoPointsBonus);
 
 //Action Card: "Extra Cart"
-//Add 3 nobles from the noble deck
-//to the end of the line.
 const dealNobles = {
 	name: 'Extra Cart',
+	description: 'Add 3 nobles from the noble deck to the end of the line.',
 	actionCard () {
 		for (i = 0; i < 3; i++){
 			queueNobles.push(deckNobles[0]);
@@ -210,9 +202,9 @@ deckActions.push(dealNobles);
 deckActions.push(dealNobles);
 
 //Action Card: "Stumble"
-//Move a noble forward exactly 1 place in line.
 const moveNobleForwardOne = {
 	name: 'Stumble',
+	description: 'Move a noble forward exactly 1 place in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -238,9 +230,9 @@ deckActions.push(moveNobleForwardOne);
 deckActions.push(moveNobleForwardOne);
 
 //Action Card: "Pushed"
-//Move a noble forward exactly 2 places in line.
 const moveNobleForwardTwo = {
 	name: 'Pushed',
+	description: 'Move a noble forward exactly 2 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -271,6 +263,7 @@ deckActions.push(moveNobleForwardTwo);
 //IS NOT CURRENTLY COMPLETE
 const moveNobleForwardTwoVariable = {
 	name: 'L\'Idiot',
+	description: 'Move a noble forward 2 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -296,9 +289,9 @@ deckActions.push(moveNobleForwardTwoVariable);
 deckActions.push(moveNobleForwardTwoVariable);
 
 //Action Card: "Tis a Far Better Thing"
-//Move a noble forward exactly 3 places in line.
 const moveNobleForwardThree = {
 	name: 'Tis a Far Better Thing',
+	description: 'Move a noble forward exactly 3 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -324,9 +317,9 @@ deckActions.push(moveNobleForwardThree);
 deckActions.push(moveNobleForwardThree);
 
 //Action Card: "Ignoble Noble"
-//Move a noble forward exactly 4 places in line.
 const moveNobleForwardFour = {
 	name: 'Ignoble Noble',
+	description: 'Move a noble forward exactly 4 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -357,6 +350,7 @@ deckActions.push(moveNobleForwardFour);
 //IS NOT CURRENTLY COMPLETE
 const moveNobleBackwardTwo = {
 	name: 'Friend of the Queen',
+	description: 'Move a noble backward exactly 2 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -387,6 +381,7 @@ deckActions.push(moveNobleBackwardTwo);
 //IS NOT CURRENTLY COMPLETE
 const moveNobleBackwardThree = {
 	name: 'Fainting Spell',
+	description: 'Move a noble backward up to 3 places in line',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -412,8 +407,10 @@ deckActions.push(moveNobleBackwardThree);
 
 //Action Card: "Civic Pride"
 //Move a Green noble forward exactly 2 places in line.
+//NOTE: Function was originally variable in card.
 const moveNobleForwardTwoGreen = {
 	name: 'Civic Pride',
+	description: 'Move a Green noble forward exactly 2 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -442,8 +439,10 @@ deckActions.push(moveNobleForwardTwoGreen);
 
 //Action Card: "Majesty"
 //Move a Purple noble forward exactly 2 places in line.
+//NOTE: Function was originally variable in card.
 const moveNobleForwardTwoPurple = {
 	name: 'Majesty',
+	description: 'Move a Purple noble forward exactly 2 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -472,8 +471,10 @@ deckActions.push(moveNobleForwardTwoPurple);
 
 //Action Card: "Military Might"
 //Move a Red noble forward exactly 2 places in line.
+//NOTE: Function was originally variable in card.
 const moveNobleForwardTwoRed = {
 	name: 'Military Might',
+	description: 'Move a Red noble forward exactly 2 places in line.',
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
@@ -501,9 +502,9 @@ const moveNobleForwardTwoRed = {
 deckActions.push(moveNobleForwardTwoRed);
 
 //Action Card: "Fled to England"
-//Discard any noble in line.
 const discardNoble = {
 	name: 'Fled to England',
+	description: 'Discard any noble in line',
 	actionCard () {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
@@ -519,9 +520,9 @@ const discardNoble = {
 deckActions.push(discardNoble);
 
 //Action Card: "Public Demand"
-//Move any noble in line to the front of the line.
 const frontOfLine = {
 	name: 'Public Demand',
+	description: 'Move any noble in line to the front of the line.',
 	actionCard () {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
@@ -537,10 +538,9 @@ const frontOfLine = {
 deckActions.push(frontOfLine);
 
 //Action Card: "Clothing Swap"
-//Choose any noble in line and discard it.
-//Replace it with the top noble from the noble deck.
 const dealReplacement = {
 	name: 'Clothing Swap',
+	description: 'Choose any noble in line and discard it. Replace it with the top noble from the noble deck.',
 	actionCard () {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
@@ -561,6 +561,7 @@ deckActions.push(dealReplacement);
 //noble he or she collected at the end of the line.
 const noblePutBack = {
 	name: 'Missed!',
+	description: 'Your opponent must place the last noble he or she collected at the end of the line.',
 	actionCard () {
 		queueNobles.push(gamePlayers[1].myNobles[gamePlayers[1].myNobles.length - 1]);
 		gamePlayers[1].myNobles.pop();
@@ -572,11 +573,9 @@ const noblePutBack = {
 deckActions.push(noblePutBack);
 
 //Action Card: "Indifferent Public"
-//Put this card in front of you.
-//Any Gray nobles in your score pile
-//are worth 1 point instead of their normal values.
 const changeGray = {
 	name: 'Indifferent Public',
+	description: 'Assign this card to yourself. Any Gray nobles in your score pile are worth 1 point instead of their normal values.',
 	actionCard () {
 		gamePlayers[0].grayEqualsOne = true;
 		retotalPoints();
@@ -585,10 +584,9 @@ const changeGray = {
 deckActions.push(changeGray);
 
 //Action Card: "Lack of Faith"
-//If there are any Blue nobles in line, move the one
-//nearest the front of the line to the front of the line.
 const blueToFront = {
 	name: 'Lack of Faith',
+	description: 'If there are any Blue nobles in line, move the one nearest the front of the line to the front of the line.',
 	actionCard () {
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('blue')){
@@ -604,10 +602,9 @@ const blueToFront = {
 deckActions.push(blueToFront);
 
 //Action Card: "Political Influence"
-//Draw 3 additional action cards at the end of your turn.
-//Do not collect a noble this turn.
 const drawActions = {
 	name: 'Political Influence',
+	description: 'Draw 3 additional action cards at the end of your turn. Do not collect a noble this turn.',
 	actionCard () {
 		for (i = 0; i < 3; i++){
 			gamePlayers[0].myActions.push(deckActions[0]);
@@ -624,6 +621,7 @@ deckActions.push(drawActions);
 //that player collects his or her next noble.
 const rearrangeNobles = {
 	name: 'Confusion in Line',
+	description: 'Randomly rearrange the line before your opponent\'s next turn.',
 	actionCard () {
 		gamePlayers[0].takeNoble();
 		shuffle(queueNobles);
@@ -634,10 +632,9 @@ const rearrangeNobles = {
 deckActions.push(rearrangeNobles);
 
 //Action Card: "Scarlet Pimpernel"
-//The day ends after you finish your turn.
-//Discard any nobles remaining in line.
 const endDay = {
 	name: 'Scarlet Pimpernel',
+	description: 'The day ends after you finish your turn. Discard any nobles remaining in line.',
 	actionCard () {
 		gamePlayers[0].takeNoble();
 		const temp = queueNobles.length;
@@ -663,4 +660,6 @@ const dealActions = () => {
 			deckActions.shift();
 		}
 	}
+	assembleActions();
+	buttonFunction();
 };
