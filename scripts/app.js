@@ -1,11 +1,16 @@
 let day = 0;
 
+//The line of nobles awaiting their turn at the guillotine.
 const queueNobles = [];
 
+//Nobles that have been discarded from the line
+//and will not be available for collection
 const discardedNobles = [];
 
+//Represents the two players
 const gamePlayers = [];
 
+//Function that can shuffle any collection of cards in game.
 const shuffle = (array) => {
 	let i = 0;
 	let j = 0;
@@ -18,9 +23,9 @@ const shuffle = (array) => {
 	}
 };
 
+//Function to deal out nobles deck and start new day.
 const dealDay = () => {
 	day += 1;
-	//to insert later - if day = 4, end game
 	shuffle(deckNobles);
 	for (let i = 0; i < 12; i++){
 		queueNobles.push(deckNobles[i]);
@@ -31,6 +36,12 @@ const dealDay = () => {
 	assembleNobles();
 };
 
+//Displays the current status of the line of nobles
+//awaiting the guillotine
+//as a sequence of divs
+//if the line of nobles is empty, this function also
+//launches a modal with a score update
+//and triggers a new day
 const assembleNobles = () => {
 	for (let i = 0; i < queueNobles.length; i++){
 		const $newdiv = $('<div></div>');
@@ -41,11 +52,36 @@ const assembleNobles = () => {
 		$newdiv.addClass(queueNobles[i].color);
 		$('.nobleLine').append($newdiv);
 	}
+	if (queueNobles.length === 0){
+		$('#myModal').css('display', 'block');
+		if (day < 3){
+			$('#score-update').text('At the end of day ' + day + ', ' + gamePlayers[0].name + ' has collected ' 
+			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
+			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
+			+ ' nobles and scored ' + gamePlayers[1].score + ' points.')
+		} else if (day === 3 && gamePlayers[0].score > gamePlayers[1].score){
+			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
+			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
+			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
+			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[0].name + 'is the winner!')
+		} else if (day === 3 && gamePlayers[1].score > gamePlayers[0].score){
+			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
+			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
+			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
+			+ ' nobles and scored ' + gamePlayers[1].score + ' points. ' + gamePlayers[1].name + 'is the winner!')
+		} else if (day === 3 && gamePlayers[0].score === gamePlayers[1].score){
+			$('#score-update').text('At the end of the final day, ' + gamePlayers[0].name + ' has collected ' 
+			+ gamePlayers[0].myNobles.length + ' nobles and scored ' + gamePlayers[0].score + ' points. ' 
+			+ gamePlayers[1].name + ' has collected ' + gamePlayers[1].myNobles.length 
+			+ ' nobles and scored ' + gamePlayers[1].score + ' points. Tie game!')
+		}
+	}
 	buttonFunction();
 	buttonRefunction();
-	//start of tomorrow - if queueNobles is empty, launch modal with score update
 };
 
+//Allows noble cards to be selected for modification
+//by action cards
 const buttonFunction = () => {
 	$('.inLine').on('click', (e) => {
 		$(e.target).addClass('clicked');
@@ -53,6 +89,9 @@ const buttonFunction = () => {
 	});
 };
 
+//Allows selected noble cards to be deselected
+//so that the player can rethink
+//and select a new card
 const buttonRefunction = () => {
 	$('.clicked').on('click', (e) => {
 		$($(e.target)[0]).removeClass('clicked');
@@ -92,8 +131,9 @@ class Player {
 		$('.nobleLine').empty();
 		assembleNobles();
 	}
-}
+};
 
+//Sets up the two players and decides who goes first
 const playerSelect = () => {
 	const playerOne = new Player('Player One');
 	gamePlayers.push(playerOne);
@@ -102,12 +142,15 @@ const playerSelect = () => {
 	gamePlayers[0].myTurn = true;
 }
 
+//Ends the turn of the current player and passes play to the next.
 const endTurn = () => {
 	gamePlayers.reverse();
 	gamePlayers[0].myTurn = true;
 	gamePlayers[1].myTurn = false;
 }
 
+//Updates score tally for each player after a noble has
+//been collected or some other event has occurred
 const retotalPoints = () => {
 	for (i = 0; i < 2; i++){
 		gamePlayers[i].score = 0;
@@ -130,3 +173,15 @@ const retotalPoints = () => {
 		}
 	}
 }
+
+//Installing functionality for modal
+const $modal = $('#myModal');
+
+const $span = $($('.close')[0]);
+
+$span.on('click', (e) => {
+    $modal.css('display', 'none');
+    if (day < 3){
+    	dealDay();
+    }
+});
