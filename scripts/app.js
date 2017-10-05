@@ -250,9 +250,31 @@ $('.starter').on('click', (e) => {
 //Employs and then discards a selected action card
 const confirmationOperation = () => {
 	$('.confirmationbutton').on('click', (e) => {
+		//cancels operation if no action cards are clicked
 		if ($('.actionHand').children().hasClass('clicked') === false){
 			return 0;
 		}
+		//cancels operation if two or more action cards are clicked
+		let failCheck = 0;
+		for (i = 0; i < $('.actionHand').children().length; i++){
+			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
+				failCheck += 1;
+				if (failCheck > 1){
+					return 0;
+				}
+			}
+		}
+		//cancels operation if the action card must affect a noble card
+		//and no noble cards are clicked
+		for (i = 0; i < gamePlayers[0].myActions.length; i++){
+			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
+				window.fret = i;
+			}
+		}
+		if ($('.nobleLine').children().hasClass('clicked') === false && gamePlayers[0].myActions[fret].takesNoble === true){
+			return 0;
+		}
+		//carries out implementation and discard
 		for (i = 1; i < gamePlayers[0].myActions.length; i++){
 			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
 				gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[i]);

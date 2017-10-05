@@ -22,5 +22,4 @@ TODO - afternoon, 10/4
 -there is a glitch in the tradeHand function as a result of how I have written the code for employing an action card. Also applies to drawActions and rearrangeNobles.
 -need to write a function that, if the action deck runs out of cards, reshuffles the discardedActions array into the action deck.
 -fix glitch where h3's can gain the class "clicked"
--if I click an action card but no corresponding card in the queue the action card still discards
 -show point value of each noble on its card
