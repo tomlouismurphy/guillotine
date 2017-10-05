@@ -18,5 +18,5 @@ Sometimes people are bad at math. Action cards that move nobles ahead 3 or 4 pla
 
 TODO - afternoon, 10/4
 -perhaps a confirmation modal to pop up after action card is selected
--need to increase the amount of cards in the action card deck (let's say to 60 or 65)
+-need to increase the amount of cards in the action card deck (let's say to 60 or 65) or recycle through discarded action cards
 -fix glitch where h3's can gain the class "clicked"

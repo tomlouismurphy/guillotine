@@ -1,5 +1,9 @@
+body {
+	font-family: 'IM Fell French Canon SC', garamond;
+}
+
 header {
-	font-size: 40px;
+	font-size: 50px;
 	text-align: center;
 	margin: 2% 0% 5% 0%;
 }
@@ -98,6 +102,7 @@ header {
     padding: 20px;
     border: 2px double #a5291a;
     width: 80%;
+    font-size: 20px;
 }
 
 .close {
@@ -116,7 +121,9 @@ header {
 
 .confirmationbutton {
 	height: 30px;
-	margin: 5px auto;
+	margin: 10px auto;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 .pointValue {
