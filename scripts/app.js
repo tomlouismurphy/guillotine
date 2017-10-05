@@ -198,11 +198,11 @@ const endTurn = () => {
 	gamePlayers[0].myTurn = true;
 	gamePlayers[1].myTurn = false;
 	if (gamePlayers[0].name === 'Player One'){
-		$('#player1score').css('border', '2px dashed purple');
+		$('#player1score').css('border', '4px dashed gold');
 		$('#player2score').css('border', '1px solid gray');
 	} else {
 		$('#player1score').css('border', '1px solid gray');
-		$('#player2score').css('border', '2px dashed purple');
+		$('#player2score').css('border', '4px dashed gold');
 	}
 }
 

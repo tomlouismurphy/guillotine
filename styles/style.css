@@ -1,25 +1,38 @@
 body {
 	font-family: 'IM Fell French Canon SC', garamond;
+	background: linear-gradient(45deg, #fff 12%, transparent 0, transparent 88%, #fff 0),
+    linear-gradient(135deg, transparent 37%, #c2c1ff 0, #c2c1ff 63%, transparent 0),
+    linear-gradient(45deg, transparent 37%, #fff 0, #fff 63%, transparent 0) #ff9b97;
+    background-size: 25px 25px;;
 }
 
 header {
 	font-size: 50px;
+	color: #007e8e;
 	text-align: center;
-	margin: 2% 0% 5% 0%;
+	margin: 3% auto;
+	background-color: #f7d280;
+	display: inline-block;
 }
 
 .inLine {
 	height: 50px;
-	width: 275px;
+	width: 300px;
 	border: 1px solid black;
-	margin: 5px;
+	margin: 0.5em auto;
+	flex-basis: 1.5em;
+	padding: 4px;
+	font-weight: bold;
 }
 
 .inHand {
-	height: 100px;
+	height: 200px;
 	width: 250px;
 	border: 1px solid black;
-	margin: 5px;
+	margin: 0.2em auto;
+	flex-basis: 18%;
+	text-align: center;
+	background-color: #f9bebe;
 }
 
 .opener {
@@ -28,60 +41,108 @@ header {
 
 .clicked {
 	border: 3px solid yellow;
-	margin: 5px;
 }
 
 .nobleLine {
-	height: 900px;
-	width: 1000px;
+	height: 1100px;
+	width: 1100px;
 	clear: both;
 	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	overflow: scroll;
+	background: url(../images/place-de-la-concorde-1791.jpg);
+	background-size: cover;
+}
+
+@media (max-width: 800px) {
+	.nobleLine {
+		height: 550px;
+		width: 550px;
+	}
+}
+
+.actionHand {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 300px;
+}
+
+.descriptor {
+	max-width: 50%;
 }
 
 .green {
-	background-color: green;
+	background-color: #1eda1e;
 }
 
 .blue {
-	background-color: blue;
+	background-color: #7676ff;
 }
 
 .red {
-	background-color: red;
+	background-color: #ff6565;
 }
 
 .gray {
-	background-color: gray;
+	background-color: #bdbdbd;
 }
 
 .purple {
-	background-color: purple;
+	background-color: #c716c7;
 }
 
 .scorekeeping {
 	display: block;
+	clear: both;
+}
+
+.heading {
+	display: block;
+	height: 50px;
+	width: 100%;
 }
 
 #player1score {
-	border: 2px dashed purple;
-	width: 120px;
+	border: 4px dashed gold;
+	width: 175px;
+	font-size: 20px;
 	text-align: center;
 	margin: 10px;
 	float: left;
+	background-color: white;
 }
 
 #player2score {
 	border: 1px solid gray;
-	width: 120px;
+	width: 175px;
+	font-size: 20px;
 	text-align: center;
 	margin: 10px;
 	float: right;
+	background-color: white;
+}
+
+#nameGame {
+	font-size: 45px;
+	color: #007e8e;
+	text-align: center;
+	margin: 3% auto;
+	background-color: #f7d280;
+	float: left;
 }
 
 #daydisplay {
 	text-align: center;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 45px;
+	float: right;
+    display: inline-block;
+    background-color: #f7d280;
+    margin: 25px;
+    border-radius: 30px;
 }
 
 .modal {
@@ -106,15 +167,17 @@ header {
 }
 
 .close {
-    color: red;
+    color: black;
     float: right;
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
+    width: 36px;
+    height: 24px;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: maroon;
     text-decoration: none;
     cursor: pointer;
 }
@@ -124,11 +187,12 @@ header {
 	margin: 10px auto;
 	font-size: 18px;
 	font-weight: bold;
+	text-align: center;
 }
 
 .pointValue {
     color: white;
     float: right;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 }
