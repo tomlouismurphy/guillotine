@@ -238,10 +238,18 @@ const retotalPoints = () => {
 	}
 }
 
+//opens a guillotine image
+const setupGuillotine = () => {
+	const $newimg = $('<img src="../guillotine/images/mindyourhead.jpg" alt="Guillotine" height="467px" width="450px">')
+	$('.opener').append($newimg);
+	$newimg.css('text-align', 'center');
+}
+
 //deploys all functions needed before first move
 //deals out nobles, action cards, assigns players
 const launchGame = () => {
 	playerSelect();
+	setupGuillotine();
 	dealDay();
 	dealActions();
 }

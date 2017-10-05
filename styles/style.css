@@ -70,10 +70,6 @@ header {
 	height: 300px;
 }
 
-.descriptor {
-	max-width: 50%;
-}
-
 .green {
 	background-color: #1eda1e;
 }
@@ -180,6 +176,10 @@ header {
     color: maroon;
     text-decoration: none;
     cursor: pointer;
+}
+
+.bottomscreen {
+	clear: both;
 }
 
 .confirmationbutton {
