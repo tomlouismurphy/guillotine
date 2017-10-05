@@ -31,11 +31,15 @@ const newLine = {
 deckActions.push(newLine);
 
 //Action Card: "Rain Delay"
+//because meddles with regular turn order, has fix included to swap cards between myActions arrays
+//and discardedActions in order to square the situation
 const newHand = {
 	name: 'Rain Delay',
 	description: 'Shuffle all players\' hands into the action deck and deal out 5 new action cards to each player.',
 	takesNoble: false,
 	actionCard () {
+		discardedActions.push(gamePlayers[0].myActions[0]);
+		gamePlayers[0].myActions.shift();
 		for (let i = 0; i < 2; i++){
 			while (0 < gamePlayers[i].myActions.length){
 				deckActions.push(gamePlayers[i].myActions[0]);
@@ -44,13 +48,14 @@ const newHand = {
 		}
 		shuffle(deckActions);
 		for (let j = 0; j < 2; j++){
-			for (let i = 0; i < 5; i++){
+			for (let i = 0; i < handStart; i++){
 				gamePlayers[j].myActions.push(deckActions[i]);
 			}
-			for (let i = 0; i < 5; i++){
+			for (let i = 0; i < handStart; i++){
 				deckActions.shift();
 			}
 		}
+		gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[0]);
 		$('.nobleLine').empty();
 		assembleNobles();
 	}
@@ -133,6 +138,8 @@ const bestowNoble = {
 deckActions.push(bestowNoble);
 
 //Action Card: "Information Exchange"
+//because meddles with regular turn order, has fix included to swap cards between myActions arrays
+//and discardedActions in order to square the situation
 const tradeHand = {
 	name: 'Information Exchange',
 	description: 'Trade hands with your opponent.',
@@ -154,6 +161,9 @@ const tradeHand = {
 		for (i = 0; i < newArrayOne.length; i++){
 			gamePlayers[1].myActions.push(newArrayOne[i]);
 		}
+		gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[0]);
+		discardedActions.push(gamePlayers[1].myActions[0]);
+		gamePlayers[1].myActions.shift();
 	}
 };
 deckActions.push(tradeHand);
@@ -630,6 +640,8 @@ const blueToFront = {
 deckActions.push(blueToFront);
 
 //Action Card: "Political Influence"
+//Because meddles with regular turn order, has fix included to swap cards between myActions arrays
+//and discardedActions in order to square the situation
 const drawActions = {
 	name: 'Political Influence',
 	description: 'Draw 3 additional action cards at the end of your turn. Do not collect a noble this turn.',
@@ -640,6 +652,9 @@ const drawActions = {
 			deckActions.shift();
 		}
 		endTurn();
+		discardedActions.push(gamePlayers[1].myActions[0]);
+		gamePlayers[1].myActions.shift();
+		gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[0]);
 	}
 }
 deckActions.push(drawActions);
@@ -648,20 +663,30 @@ deckActions.push(drawActions);
 //Action Card: "Confusion in Line"
 //Choose a player. Randomly rearrange the line just before
 //that player collects his or her next noble.
+//Because meddles with regular turn order, has fix included to swap cards between myActions arrays
+//and discardedActions in order to square the situation
 const rearrangeNobles = {
 	name: 'Confusion in Line',
 	description: 'Randomly rearrange the line before your opponent\'s next turn.',
 	takesNoble: false,
+	exceptionEndTurn: true,
 	actionCard () {
 		gamePlayers[0].takeNoble();
+		discardedActions.push(gamePlayers[1].myActions[0]);
+		gamePlayers[1].myActions.shift();
 		shuffle(queueNobles);
 		$('.nobleLine').empty();
 		assembleNobles();
+		gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[0]);
+		$('.actionHand').empty();
+		assembleActions();
 	}
 }
 deckActions.push(rearrangeNobles);
 
 //Action Card: "Scarlet Pimpernel"
+//because meddles with regular turn order, has fix included to swap cards between myActions arrays
+//and discardedActions in order to square the situation
 const endDay = {
 	name: 'Scarlet Pimpernel',
 	description: 'The day ends after you finish your turn. Discard any nobles remaining in line.',
@@ -675,19 +700,23 @@ const endDay = {
 		}
 		$('.nobleLine').empty();
 		assembleNobles();
+		gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[0]);
+		discardedActions.push(gamePlayers[1].myActions[0]);
+		gamePlayers[1].myActions.shift();
 	}
 }
 deckActions.push(endDay);
 
 //ACTION CARD DEAL
 
+const handStart = 4;
 const dealActions = () => {
 	shuffle(deckActions);
 	for (let j = 0; j < 2; j++){
-		for (let i = 0; i < 5; i++){
+		for (let i = 0; i < handStart; i++){
 			gamePlayers[j].myActions.push(deckActions[i]);
 		}
-		for (let i = 0; i < 5; i++){
+		for (let i = 0; i < handStart; i++){
 			deckActions.shift();
 		}
 	}

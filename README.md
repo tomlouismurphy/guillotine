@@ -18,8 +18,5 @@ Sometimes people are bad at math. Action cards that move nobles ahead 3 or 4 pla
 
 TODO - afternoon, 10/4
 -perhaps a confirmation modal to pop up after action card is selected
--in between playing the action card and taking the noble, the action card functionality is disabled
--there is a glitch in the tradeHand function as a result of how I have written the code for employing an action card. Also applies to drawActions and rearrangeNobles.
--need to write a function that, if the action deck runs out of cards, reshuffles the discardedActions array into the action deck.
+-need to increase the amount of cards in the action card deck (let's say to 60 or 65)
 -fix glitch where h3's can gain the class "clicked"
--show point value of each noble on its card

@@ -46,8 +46,12 @@ const dealDay = () => {
 const assembleNobles = () => {
 	for (let i = 0; i < queueNobles.length; i++){
 		const $newdiv = $('<div></div>');
+		const $newspan = $('<span/>');
+		$newspan.text(queueNobles[i].points);
+		$newspan.addClass('pointValue');
 		const $h3 = $('<h3/>');
 		$h3.text(queueNobles[i].name);
+		$newdiv.append($newspan);
 		$newdiv.append($h3);
 		$newdiv.addClass('inLine');
 		$newdiv.addClass(queueNobles[i].color);
@@ -158,6 +162,7 @@ class Player {
 		this.countessCollected = false;
 		this.twoPointBonus = false;
 		this.twoPointPenalty = false;
+		this.actionCardPlayedInTurn = false;
 	};
 	playCard(){
 
@@ -188,6 +193,7 @@ const playerSelect = () => {
 const endTurn = () => {
 	gamePlayers[0].myActions.push(deckActions[0]);
 	deckActions.shift();
+	gamePlayers[0].actionCardPlayedInTurn = false;
 	gamePlayers.reverse();
 	gamePlayers[0].myTurn = true;
 	gamePlayers[1].myTurn = false;
@@ -274,6 +280,10 @@ const confirmationOperation = () => {
 		if ($('.nobleLine').children().hasClass('clicked') === false && gamePlayers[0].myActions[fret].takesNoble === true){
 			return 0;
 		}
+		//cancels operation if action card has previously been used this turn
+		if (gamePlayers[0].actionCardPlayedInTurn === true){
+			return 0;
+		}
 		//carries out implementation and discard
 		for (i = 1; i < gamePlayers[0].myActions.length; i++){
 			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
@@ -281,11 +291,16 @@ const confirmationOperation = () => {
 				gamePlayers[0].myActions.splice((i + 1), 1);
 			}
 		}
+		gamePlayers[0].actionCardPlayedInTurn = true;
 		gamePlayers[0].myActions[0].actionCard();
 		discardedActions.push(gamePlayers[0].myActions[0]);
 		gamePlayers[0].myActions.shift();
+		if (discardedActions[discardedActions.length - 1] === gamePlayers[0].myActions[0]){
+			discardedActions.pop();
+		}
 		$('.actionHand').empty();
 		assembleActions();
+		buttonFunction();
 	})
 }
 

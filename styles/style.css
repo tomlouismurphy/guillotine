@@ -1,6 +1,12 @@
+header {
+	font-size: 40px;
+	text-align: center;
+	margin: 2% 0% 5% 0%;
+}
+
 .inLine {
 	height: 50px;
-	width: 250px;
+	width: 275px;
 	border: 1px solid black;
 	margin: 5px;
 }
@@ -111,4 +117,11 @@
 .confirmationbutton {
 	height: 30px;
 	margin: 5px auto;
+}
+
+.pointValue {
+    color: white;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
 }
