@@ -95,14 +95,10 @@ const assembleActions = () => {
 		const $h3 = $('<h3/>');
 		$h3.text(gamePlayers[0].myActions[i].name);
 		$newdiv.append($h3);
-		const $button = $('<button/>');
-		$button.text('Info');
-		$button.addClass('descriptor');
-		$newdiv.append($button);
-		const $datadiv = $('<div/>');
-		$datadiv.data('info', gamePlayers[0].myActions[i].description);
-		$datadiv.addClass('datadiv');
-		$newdiv.append($datadiv);
+		const $p = $('<p/>');
+		$p.text(gamePlayers[0].myActions[i].description);
+		$p.addClass('infoText');
+		$newdiv.append($p);
 		$newdiv.addClass('inHand');
 		$('.actionHand').append($newdiv);
 	}
@@ -116,11 +112,11 @@ const assembleActions = () => {
 	}
 //sets up query based on amount of action cards in hand to determine height of confirmation button
 	if (gamePlayers[0].myActions.length < 6){
-		$('.actionHand').css('height', '275px');
+		$('.actionHand').css('height', '325px');
 	} else if (gamePlayers[0].myActions.length < 11) {
-		$('.actionHand').css('height', '500px');
+		$('.actionHand').css('height', '625px');
 	} else {
-		$('.actionHand').css('height', '750px');
+		$('.actionHand').css('height', '925px');
 	}
 };
 
@@ -128,19 +124,21 @@ const assembleActions = () => {
 //by action cards, or action cards to be selected for use.
 const buttonFunction = () => {
 	$('.inLine').on('click', (e) => {
-		$(e.target).addClass('clicked');
+		if ($($($(e.target)[0]).parent()[0]).hasClass('inLine')){
+			$($($(e.target)[0]).parent()[0]).addClass('clicked')
+		} else {
+			$(e.target).addClass('clicked');
+		}
 		buttonRefunction();
 	});
 	$('.inHand').on('click', (e) => {
-		console.log($(e.target));
-		$(e.target).addClass('clicked');
+		if ($($($(e.target)[0]).parent()[0]).hasClass('inHand')){
+			$($($(e.target)[0]).parent()[0]).addClass('clicked')
+		} else {
+			$(e.target).addClass('clicked');
 		buttonRefunction();
+		}
 	});
-	$('.descriptor').on('click', (e) => {
-		$('#infoModal').css('display', 'block');
-		let datum = $($(e.target).parent().children()[2]).data('info');
-		$('#infomodal-update').text(datum);
-	})
 };
 
 //Allows selected noble cards to be deselected
@@ -208,11 +206,11 @@ const endTurn = () => {
 	gamePlayers[0].myTurn = true;
 	gamePlayers[1].myTurn = false;
 	if (gamePlayers[0].name === 'Player One'){
-		$('#player1score').css('border', '4px dashed gold');
+		$('#player1score').css('border', '5px dashed red');
 		$('#player2score').css('border', '1px solid gray');
 	} else {
 		$('#player1score').css('border', '1px solid gray');
-		$('#player2score').css('border', '4px dashed gold');
+		$('#player2score').css('border', '5px dashed red');
 	}
 }
 

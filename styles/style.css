@@ -1,9 +1,7 @@
 body {
 	font-family: 'IM Fell French Canon SC', garamond;
-	background: linear-gradient(45deg, #fff 12%, transparent 0, transparent 88%, #fff 0),
-    linear-gradient(135deg, transparent 37%, #c2c1ff 0, #c2c1ff 63%, transparent 0),
-    linear-gradient(45deg, transparent 37%, #fff 0, #fff 63%, transparent 0) #ff9b97;
-    background-size: 25px 25px;;
+	background-image: url(../images/royalstriped.jpg);
+    background-size: contain;
 }
 
 .heading {
@@ -14,10 +12,10 @@ body {
 
 .starter {
 	margin-top: 70px;
-	margin-left: 20px;
+	margin-left: 25%;
 	height: 60px;
 	width: 140px;
-	background-color: blue;
+	background-color: red;
 	font-size: 22px;
 	color: white;
 }
@@ -29,6 +27,7 @@ body {
 	margin: 3% auto;
 	background-color: #f7d280;
 	float: left;
+	margin-left: 25px;
 }
 
 .opener {
@@ -69,6 +68,8 @@ img {
     height: 60px;
     width: 110px;
     font-size: 18px;
+    background-color: red;
+    color: white;
 }
 
 #daydisplay {
@@ -96,7 +97,7 @@ img {
 }
 
 #player1score {
-	border: 6px dashed gold;
+	border: 6px dashed red;
 	width: 175px;
 	font-size: 20px;
 	text-align: center;
@@ -116,7 +117,7 @@ img {
 }
 
 .nobleLine {
-	height: 1100px;
+	height: 400px;
 	width: 1100px;
 	clear: both;
 	margin: 0 auto;
@@ -188,12 +189,28 @@ img {
 	background-color: #f9bebe;
 }
 
+@media (max-width: 700px){
+	.inHand {
+		height: 300px;
+	}
+}
+
 .actionHand {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 100%;
 	height: 450px;
+}
+
+.infoText {
+	font-size: 16px;
+}
+
+@media (max-width: 800px){
+	.infoText {
+		font-size: 14px;
+	}
 }
 
 .clicked {
@@ -250,4 +267,8 @@ img {
     left: 50%;
     transform: translateX(-50%);
     margin: 2%;
+}
+
+.confirmationbutton {
+	background-color: yellow;
 }

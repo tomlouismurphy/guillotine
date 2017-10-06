@@ -35,7 +35,7 @@ deckActions.push(newLine);
 //and discardedActions in order to square the situation
 const newHand = {
 	name: 'Rain Delay',
-	description: 'Shuffle all players\' hands into the action deck and deal out 5 new action cards to each player.',
+	description: 'Shuffle all players\' hands into the action deck and deal out 4 new action cards to each player.',
 	takesNoble: false,
 	actionCard () {
 		discardedActions.push(gamePlayers[0].myActions[0]);
