@@ -6,41 +6,113 @@ body {
     background-size: 25px 25px;;
 }
 
-header {
+.heading {
+	display: block;
+	height: 50px;
+	width: 100%;
+}
+
+.starter {
+	margin-top: 70px;
+	margin-left: 20px;
+	height: 60px;
+	width: 140px;
+	background-color: blue;
+	font-size: 22px;
+	color: white;
+}
+
+#nameGame {
 	font-size: 50px;
 	color: #007e8e;
 	text-align: center;
 	margin: 3% auto;
 	background-color: #f7d280;
-	display: inline-block;
-}
-
-.inLine {
-	height: 50px;
-	width: 300px;
-	border: 1px solid black;
-	margin: 0.5em auto;
-	flex-basis: 1.5em;
-	padding: 4px;
-	font-weight: bold;
-}
-
-.inHand {
-	height: 200px;
-	width: 250px;
-	border: 1px solid black;
-	margin: 0.2em auto;
-	flex-basis: 18%;
-	text-align: center;
-	background-color: #f9bebe;
+	float: left;
 }
 
 .opener {
 	display: none;
+	margin-top: 40px;
 }
 
-.clicked {
-	border: 3px solid yellow;
+img {
+	position: relative;
+    left: 30%;
+    transform: translateX(-50%);
+    clear: both;
+}
+
+@media (max-width: 900px) {
+	img {
+		height: 310px;
+		width: 300px;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 520px) {
+	img {
+		left: 50%;
+	}
+}
+
+.buttonhouse {
+	display: none;
+}
+
+#collector {
+	position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2%;
+    height: 60px;
+    width: 110px;
+    font-size: 18px;
+}
+
+#daydisplay {
+	text-align: center;
+	font-weight: bold;
+	font-size: 45px;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f7d280;
+    margin: 25px;
+    border-radius: 30px;
+}
+
+@media (max-width: 450px) {
+	#daydisplay {
+		left: 47%;
+	}
+}
+
+.scorekeeping {
+	display: block;
+	clear: both;
+}
+
+#player1score {
+	border: 6px dashed gold;
+	width: 175px;
+	font-size: 20px;
+	text-align: center;
+	margin: 10px;
+	float: left;
+	background-color: white;
+}
+
+#player2score {
+	border: 1px solid gray;
+	width: 175px;
+	font-size: 20px;
+	text-align: center;
+	margin: 10px;
+	float: right;
+	background-color: white;
 }
 
 .nobleLine {
@@ -62,12 +134,21 @@ header {
 	}
 }
 
-.actionHand {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 100%;
-	height: 300px;
+@media (max-width: 450px) {
+	.nobleLine {
+		height: 400px;
+		width: 400px;
+	}
+}
+
+.inLine {
+	height: 50px;
+	width: 300px;
+	border: 1px solid black;
+	margin: 0.5em auto;
+	flex-basis: 1.5em;
+	padding: 4px;
+	font-weight: bold;
 }
 
 .green {
@@ -90,55 +171,33 @@ header {
 	background-color: #c716c7;
 }
 
-.scorekeeping {
-	display: block;
-	clear: both;
+.pointValue {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.heading {
-	display: block;
-	height: 50px;
+.inHand {
+	height: 200px;
+	width: 250px;
+	border: 1px solid black;
+	margin: 0.2em auto;
+	flex-basis: 18%;
+	text-align: center;
+	background-color: #f9bebe;
+}
+
+.actionHand {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	width: 100%;
+	height: 450px;
 }
 
-#player1score {
-	border: 4px dashed gold;
-	width: 175px;
-	font-size: 20px;
-	text-align: center;
-	margin: 10px;
-	float: left;
-	background-color: white;
-}
-
-#player2score {
-	border: 1px solid gray;
-	width: 175px;
-	font-size: 20px;
-	text-align: center;
-	margin: 10px;
-	float: right;
-	background-color: white;
-}
-
-#nameGame {
-	font-size: 45px;
-	color: #007e8e;
-	text-align: center;
-	margin: 3% auto;
-	background-color: #f7d280;
-	float: left;
-}
-
-#daydisplay {
-	text-align: center;
-	font-weight: bold;
-	font-size: 45px;
-	float: right;
-    display: inline-block;
-    background-color: #f7d280;
-    margin: 25px;
-    border-radius: 30px;
+.clicked {
+	border: 3px solid yellow;
 }
 
 .modal {
@@ -182,17 +241,13 @@ header {
 	clear: both;
 }
 
-.confirmationbutton {
+.confirmation {
 	height: 30px;
-	margin: 10px auto;
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
-}
-
-.pointValue {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+	position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2%;
 }

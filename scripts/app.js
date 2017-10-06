@@ -106,12 +106,21 @@ const assembleActions = () => {
 		$newdiv.addClass('inHand');
 		$('.actionHand').append($newdiv);
 	}
+//sets up button to confirm action card choice at beginning of game
 	if ($('.confirmation').children().length === 0){
 		const $confirmationbutton = $('<button/>');
 		$confirmationbutton.text('Use Selected Action Card');
 		$confirmationbutton.addClass('confirmationbutton');
 		$('.confirmation').append($confirmationbutton);
 		confirmationOperation();
+	}
+//sets up query based on amount of action cards in hand to determine height of confirmation button
+	if (gamePlayers[0].myActions.length < 6){
+		$('.actionHand').css('height', '275px');
+	} else if (gamePlayers[0].myActions.length < 11) {
+		$('.actionHand').css('height', '500px');
+	} else {
+		$('.actionHand').css('height', '750px');
 	}
 };
 
@@ -123,6 +132,7 @@ const buttonFunction = () => {
 		buttonRefunction();
 	});
 	$('.inHand').on('click', (e) => {
+		console.log($(e.target));
 		$(e.target).addClass('clicked');
 		buttonRefunction();
 	});
@@ -258,6 +268,7 @@ const launchGame = () => {
 $('.starter').on('click', (e) => {
 		$('.starter').remove();
 		$('.opener').css('display', 'block');
+		$('.buttonhouse').css('display', 'block');
 		launchGame();
 	});
 
