@@ -236,6 +236,27 @@ const retotalPoints = () => {
 				}
 			}
 		}
+		if (gamePlayers[i].greenPlusOne === true){
+			for (j = 0; j < gamePlayers[i].myNobles.length; j++){
+				if (gamePlayers[i].myNobles[j].color === 'green'){
+					gamePlayers[i].score += 1;
+				}
+			}
+		}
+		if (gamePlayers[i].redPlusOne === true){
+			for (j = 0; j < gamePlayers[i].myNobles.length; j++){
+				if (gamePlayers[i].myNobles[j].color === 'red'){
+					gamePlayers[i].score += 1;
+				}
+			}
+		}
+		if (gamePlayers[i].bluePlusOne === true){
+			for (j = 0; j < gamePlayers[i].myNobles.length; j++){
+				if (gamePlayers[i].myNobles[j].color === 'blue'){
+					gamePlayers[i].score += 1;
+				}
+			}
+		}
 	}
 	if (gamePlayers[0].name === 'Player One'){
 		$('#p1score').text('Player One: ' + gamePlayers[0].score);

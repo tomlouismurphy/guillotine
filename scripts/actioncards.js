@@ -287,7 +287,7 @@ deckActions.push(moveNobleForwardTwo);
 //IS NOT CURRENTLY COMPLETE
 const moveNobleForwardTwoVariable = {
 	name: 'L\'Idiot',
-	description: 'Move a noble forward 2 places in line.',
+	description: 'Move a noble forward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
@@ -409,7 +409,7 @@ deckActions.push(moveNobleBackwardTwo);
 //IS NOT CURRENTLY COMPLETE
 const moveNobleBackwardThree = {
 	name: 'Fainting Spell',
-	description: 'Move a noble backward up to 3 places in line.',
+	description: 'Move a noble backward exactly 3 places in line.',
 	takesNoble: true,
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
@@ -706,6 +706,123 @@ const endDay = {
 	}
 }
 deckActions.push(endDay);
+
+//Action Card: "Escape!"
+const twoNoblesFlee = {
+	name: 'Escape!',
+	description: 'Randomly choose 2 nobles in line and discard them. Randomly rearrange the remaining nobles in line.',
+	takesNoble: false,
+	actionCard () {
+		if (queueNobles.length < 3){
+			return 0;
+		}
+		let rang;
+		let thru;
+		for (let i = 0; i < 2; i++){
+			rang = queueNobles.length;
+			thru = Math.floor(Math.random() * rang)
+			discardedNobles.push(queueNobles[thru]);
+			queueNobles.splice((thru), 1);
+		}
+		shuffle(queueNobles);
+		$('.nobleLine').empty();
+		assembleNobles();
+	}
+}
+deckActions.push(twoNoblesFlee);
+
+//Action Card: "Milling in Line"
+const rearrangeFirstFive = {
+	name: 'Milling in Line',
+	description: 'Randomly rearrange the first 5 nobles in line.',
+	takesNoble: false,
+	actionCard () {
+		const jumpArray = [];
+		if (queueNobles.length <= 5){
+			shuffle(queueNobles);
+		} else {
+			for (let i = 0; i < 5; i++){
+				jumpArray.push(queueNobles[0]);
+				queueNobles.shift();
+			}
+			shuffle(jumpArray);
+			for (let i = 0; i < 5; i++){
+				queueNobles.unshift(jumpArray[0]);
+				jumpArray.shift();
+			}
+		}
+		$('.nobleLine').empty();
+		assembleNobles();
+	}
+}
+deckActions.push(rearrangeFirstFive);
+deckActions.push(rearrangeFirstFive);
+
+//Action Card: "Civic Support"
+const changeGreen = {
+	name: 'Civic Support',
+	description: 'Assign this card to yourself. It is worth +1 point for each Green noble in your score pile.',
+	takesNoble: false,
+	actionCard () {
+		gamePlayers[0].greenPlusOne = true;
+		retotalPoints();
+	}
+}
+deckActions.push(changeGreen);
+
+//Action Card: "Military Support"
+const changeRed = {
+	name: 'Military Support',
+	description: 'Assign this card to yourself. It is worth +1 point for each Red noble in your score pile.',
+	takesNoble: false,
+	actionCard () {
+		gamePlayers[0].redPlusOne = true;
+		retotalPoints();
+	}
+}
+deckActions.push(changeRed);
+
+//Action Card: "Church Support"
+const changeBlue = {
+	name: 'Church Support',
+	description: 'Assign this card to yourself. It is worth +1 point for each Blue noble in your score pile.',
+	takesNoble: false,
+	actionCard () {
+		gamePlayers[0].bluePlusOne = true;
+		retotalPoints();
+	}
+}
+deckActions.push(changeBlue);
+
+//Action Card: "Trip"
+const oneBack = {
+	name: 'Trip',
+	description: 'Move a noble backward exactly 1 place in line. You may play another action card this turn.',
+	takesNoble: true,
+	actionCard () {
+		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		for (i = 0; i < queueNobles.length; i++){
+			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+				if (i > queueNobles.length - 2){
+					return 0;
+				} else {
+					let trippy;
+					window.trippy = i;
+				} 
+			}
+		}
+		queueNobles.splice((trippy + 2), 0, queueNobles[trippy]);
+		queueNobles.splice((trippy), 1);
+		$('.nobleLine').empty();
+		assembleNobles();
+		gamePlayers[0].actionCardPlayedInTurn = false;
+		return trippy;
+	}
+}
+deckActions.push(oneBack);
+deckActions.push(oneBack);
 
 //ACTION CARD DEAL
 
