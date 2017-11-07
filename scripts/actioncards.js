@@ -446,6 +446,7 @@ const moveNobleForwardTwoGreen = {
 			return 0;
 		}
 		if ($('.clicked').hasClass('green') === false){
+			console.log('test');
 			return 0;
 		}
 		for (i = 0; i < queueNobles.length; i++){
@@ -479,6 +480,7 @@ const moveNobleForwardTwoPurple = {
 			return 0;
 		}
 		if ($('.clicked').hasClass('purple') === false){
+			console.log('test');
 			return 0;
 		}
 		for (i = 0; i < queueNobles.length; i++){

@@ -132,6 +132,9 @@ const buttonFunction = () => {
 		buttonRefunction();
 	});
 	$('.inHand').on('click', (e) => {
+		console.log($($(e.target).parent()[0]).children().length);
+		console.log($($($(e.target).parent()[0]).children()[0]).hasClass('clicked'));
+		console.log(!$(e.target).hasClass('clicked'));
 		if ($($($(e.target)[0]).parent()[0]).hasClass('inHand')){
 			$($($(e.target)[0]).parent()[0]).addClass('clicked')
 		} else {
