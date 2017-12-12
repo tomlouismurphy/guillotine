@@ -368,16 +368,15 @@ const moveNobleForwardFour = {
 				if (i < 4){
 					return 0;
 				} else {
-					let ignoble;
-					window.ignoble = i;
+					let ignoble = i;
+					queueNobles.splice((ignoble - 4), 0, queueNobles[ignoble]);
+					queueNobles.splice((ignoble + 1), 1);
+					$('.nobleLine').empty();
+					assembleNobles();
+					return ignoble;
 				} 
 			}
 		}
-		queueNobles.splice((ignoble - 4), 0, queueNobles[ignoble]);
-		queueNobles.splice((ignoble + 1), 1);
-		$('.nobleLine').empty();
-		assembleNobles();
-		return ignoble;
 	}
 }
 deckActions.push(moveNobleForwardFour);
