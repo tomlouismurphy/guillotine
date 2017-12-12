@@ -261,6 +261,9 @@ const moveNobleForwardTwo = {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
 		}
+		if (queueNobles.length < 3){
+			return 0;
+		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
@@ -293,6 +296,9 @@ const moveNobleForwardTwoVariable = {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
 		}
+		if (queueNobles.length < 3){
+			return 0;
+		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 2){
@@ -322,6 +328,9 @@ const moveNobleForwardThree = {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
 		}
+		if (queueNobles.length < 4){
+			return 0;
+		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 3){
@@ -349,6 +358,9 @@ const moveNobleForwardFour = {
 	takesNoble: true,
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		if (queueNobles.length < 5){
 			return 0;
 		}
 		for (i = 0; i < queueNobles.length; i++){
@@ -445,6 +457,9 @@ const moveNobleForwardTwoGreen = {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
 		}
+		if (queueNobles.length < 3){
+			return 0;
+		}
 		if ($('.clicked').hasClass('green') === false){
 			console.log('test');
 			return 0;
@@ -479,6 +494,9 @@ const moveNobleForwardTwoPurple = {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
 			return 0;
 		}
+		if (queueNobles.length < 3){
+			return 0;
+		}
 		if ($('.clicked').hasClass('purple') === false){
 			console.log('test');
 			return 0;
@@ -511,6 +529,9 @@ const moveNobleForwardTwoRed = {
 	takesNoble: true,
 	actionCard () {
 		if ($('.nobleLine').children().hasClass('clicked') === false){
+			return 0;
+		}
+		if (queueNobles.length < 3){
 			return 0;
 		}
 		if ($('.clicked').hasClass('red') === false){
@@ -623,6 +644,7 @@ const changeGray = {
 deckActions.push(changeGray);
 
 //Action Card: "Lack of Faith"
+//NEEDS BUG FIX IN ORDER TO NOT DISCARD CARD IF NO BLUE NOBLES
 const blueToFront = {
 	name: 'Lack of Faith',
 	description: 'If there are any Blue nobles in line, move the one nearest the front of the line to the front of the line.',
@@ -635,6 +657,8 @@ const blueToFront = {
 				$('.nobleLine').empty();
 				assembleNobles();
 				return i;
+			} else {
+				;
 			}
 		}
 	}

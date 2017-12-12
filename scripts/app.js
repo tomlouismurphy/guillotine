@@ -175,9 +175,6 @@ class Player {
 		this.twoPointPenalty = false;
 		this.actionCardPlayedInTurn = false;
 	};
-	playCard(){
-
-	};
 	takeNoble(){
 		this.myNobles.push(queueNobles[0]);
 		queueNobles.shift();
