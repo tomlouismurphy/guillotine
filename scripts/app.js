@@ -312,27 +312,30 @@ const confirmationOperation = () => {
 		//and no noble cards are clicked
 		for (i = 0; i < gamePlayers[0].myActions.length; i++){
 			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
-				window.fret = i;
+				let fret = i;
+				if ($('.nobleLine').children().hasClass('clicked') === false && gamePlayers[0].myActions[fret].takesNoble === true){
+					return 0;
+				}
 			}
-		}
-		if ($('.nobleLine').children().hasClass('clicked') === false && gamePlayers[0].myActions[fret].takesNoble === true){
-			return 0;
 		}
 		//cancels operation if action card has previously been used this turn
 		if (gamePlayers[0].actionCardPlayedInTurn === true){
 			return 0;
 		}
-		//carries out implementation and discard
+		//ensures that selected action card is card played
 		for (i = 1; i < gamePlayers[0].myActions.length; i++){
 			if ($($('.actionHand').children()[i]).hasClass('clicked') === true){
 				gamePlayers[0].myActions.unshift(gamePlayers[0].myActions[i]);
 				gamePlayers[0].myActions.splice((i + 1), 1);
 			}
 		}
-		gamePlayers[0].actionCardPlayedInTurn = true;
+		//performs action card's action
 		gamePlayers[0].myActions[0].actionCard();
+		gamePlayers[0].actionCardPlayedInTurn = true;
 		discardedActions.push(gamePlayers[0].myActions[0]);
 		gamePlayers[0].myActions.shift();
+		//ensures that there are not more action cards in discard pile
+		//than action cards that have been played
 		if (discardedActions[discardedActions.length - 1] === gamePlayers[0].myActions[0]){
 			discardedActions.pop();
 		}

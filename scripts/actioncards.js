@@ -229,9 +229,6 @@ const moveNobleForwardOne = {
 	description: 'Move a noble forward exactly 1 place in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i < 1){
@@ -258,9 +255,6 @@ const moveNobleForwardTwo = {
 	description: 'Move a noble forward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 3){
 			return 0;
 		}
@@ -293,9 +287,6 @@ const moveNobleForwardTwoVariable = {
 	description: 'Move a noble forward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 3){
 			return 0;
 		}
@@ -325,9 +316,6 @@ const moveNobleForwardThree = {
 	description: 'Move a noble forward exactly 3 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 4){
 			return 0;
 		}
@@ -357,24 +345,22 @@ const moveNobleForwardFour = {
 	description: 'Move a noble forward exactly 4 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 5){
 			return 0;
-		}
-		for (i = 0; i < queueNobles.length; i++){
-			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
-				if (i < 4){
-					return 0;
-				} else {
-					let ignoble = i;
-					queueNobles.splice((ignoble - 4), 0, queueNobles[ignoble]);
-					queueNobles.splice((ignoble + 1), 1);
-					$('.nobleLine').empty();
-					assembleNobles();
-					return ignoble;
-				} 
+		} else {
+			for (i = 0; i < queueNobles.length; i++){
+				if ($($('.nobleLine').children()[i]).hasClass('clicked')){
+					if (i < 4){
+						return 0;
+					} else {
+						let ignoble = i;
+						queueNobles.splice((ignoble - 4), 0, queueNobles[ignoble]);
+						queueNobles.splice((ignoble + 1), 1);
+						$('.nobleLine').empty();
+						assembleNobles();
+						return ignoble;
+					} 
+				}
 			}
 		}
 	}
@@ -391,9 +377,6 @@ const moveNobleBackwardTwo = {
 	description: 'Move a noble backward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i > queueNobles.length - 3){
@@ -423,9 +406,6 @@ const moveNobleBackwardThree = {
 	description: 'Move a noble backward exactly 3 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i > queueNobles.length - 4){
@@ -453,9 +433,6 @@ const moveNobleForwardTwoGreen = {
 	description: 'Move a Green noble forward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 3){
 			return 0;
 		}
@@ -490,9 +467,6 @@ const moveNobleForwardTwoPurple = {
 	description: 'Move a Purple noble forward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 3){
 			return 0;
 		}
@@ -527,9 +501,6 @@ const moveNobleForwardTwoRed = {
 	description: 'Move a Red noble forward exactly 2 places in line.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		if (queueNobles.length < 3){
 			return 0;
 		}
@@ -825,9 +796,6 @@ const oneBack = {
 	description: 'Move a noble backward exactly 1 place in line. You may play another action card this turn.',
 	takesNoble: true,
 	actionCard () {
-		if ($('.nobleLine').children().hasClass('clicked') === false){
-			return 0;
-		}
 		for (i = 0; i < queueNobles.length; i++){
 			if ($($('.nobleLine').children()[i]).hasClass('clicked')){
 				if (i > queueNobles.length - 2){
