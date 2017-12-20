@@ -153,12 +153,18 @@ const buttonRefunction = () => {
 			$($(e.target)[0]).removeClass('clicked');
 			console.log('test succeeds');
 			buttonFunction();
+		} else if ($($(e.target).parent()[0]).hasClass('clicked')){
+			$($($(e.target)[0]).parent()[0]).removeClass('clicked');
+			buttonFunction();
 		}
 	});
 	$('.inLine').on('click', (e) => {
 		if ($(e.target).hasClass('clicked')){
 			$($(e.target)[0]).removeClass('clicked');
 			console.log('test succeeds');
+			buttonFunction();
+		} else if ($($(e.target).parent()[0]).hasClass('clicked')){
+			$($($(e.target)[0]).parent()[0]).removeClass('clicked');
 			buttonFunction();
 		}
 	})
