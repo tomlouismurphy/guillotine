@@ -133,10 +133,10 @@ const buttonFunction = () => {
 	});
 	$('.inHand').on('click', (e) => {
 		console.log($($(e.target).parent()[0]).children().length);
-		console.log($($($(e.target).parent()[0]).children()[0]).hasClass('clicked'));
-		console.log(!$(e.target).hasClass('clicked'));
+		console.log($($(e.target).parent()[0]).children());
+		console.log($(e.target).parent());
 		if ($($($(e.target)[0]).parent()[0]).hasClass('inHand')){
-			$($($(e.target)[0]).parent()[0]).addClass('clicked')
+			$($($(e.target)[0]).parent()[0]).addClass('clicked');
 		} else {
 			$(e.target).addClass('clicked');
 		buttonRefunction();
@@ -148,10 +148,20 @@ const buttonFunction = () => {
 //so that the player can rethink
 //and select a new card
 const buttonRefunction = () => {
-	$('.clicked').on('click', (e) => {
-		$($(e.target)[0]).removeClass('clicked');
-		buttonFunction();
+	$('.inHand').on('click', (e) => {
+		if ($(e.target).hasClass('clicked')){
+			$($(e.target)[0]).removeClass('clicked');
+			console.log('test succeeds');
+			buttonFunction();
+		}
 	});
+	$('.inLine').on('click', (e) => {
+		if ($(e.target).hasClass('clicked')){
+			$($(e.target)[0]).removeClass('clicked');
+			console.log('test succeeds');
+			buttonFunction();
+		}
+	})
 };
 
 class Player {
