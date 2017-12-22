@@ -18,7 +18,11 @@
 	<div class='heading'>
 		<div id='nameGame'>Guillotine</div>
 	</div>
-	<button class="starter" type="button">New Game!</button>
+	<div class='buttons'>
+		<button id="starter" type="button">New Game!</button>
+		<br>
+		<button id="rules" type="button">Read the Rules</button>
+	</div>
 	<div class="opener">
 	</div>
 	<div class='buttonhouse'>
@@ -26,7 +30,11 @@
 			<p id='dayupdate'>Day 1</p>
 		</div>
 		<br>
-		<button id='collector' type='button'>Execute</button>
+		<div class='buttons'>
+			<button id="rules" type="button">Read the Rules</button>
+			<br>
+			<button id='collector' type='button'>Execute</button>
+		</div>
 	</div>
 	<div class='scorekeeping'>
 		<div id='player1score'>
@@ -50,6 +58,68 @@
     		<span class="close" id="closeScore">&times;</span>
     	
     		<p id="modal-update">Placeholder.</p>
+  	  	</div>
+  	</div>
+  	<div id="rulesModal" class="modal">
+  		<div class="modal-content">
+    		<span class="close" id="closeRules">&times;</span>
+    	
+    		<p id="instruction-manual">
+    			Guillotine - Rules for Play
+    			<br>
+    			<br>
+				Welcome to Guillotine! When the page loads, click the "New Game" button to begin play.
+				<br>
+				<br>
+				The browser will now do several things. 
+				<br>
+				<br>
+				It will advance the day tracker to Day 1 (the entire game lasts for three days).
+				<br>
+				It will deal out 12 nobles from the deck of noble cards, and put them in the line for the guillotine.
+				<br>
+				It will deal out four action cards for each player. As it is Player One's turn first, his/her cards will be shown on screen now, and Player Two's cards will not show up yet. Only the player whose turn it is will have their action cards displayed on screen.
+				<br>
+				<br>
+				An individual turn of Guillotine has two steps.
+				<br>
+				<br>
+				First, the player must play an action card. I'll outline how this works.
+				<br>
+				Scroll down to the bottom of the screen. You'll see your list of action cards - each player starts the game with four.
+				<br>
+				Every card has a title, at its top, and a description underneath of what that card does.
+				<br>
+				<br>
+				Some cards need to modify a specific card in the noble line. For instance, take "Friend of the Queen", which moves a noble backwards two places in line.
+				<br>
+				For this card to function, you will need to click on one noble card in line that you want to move back two spaces, click on "Friend of the Queen" (or the relevant noble card) and then click on the "Use Selected Action Card" button.
+				<br>
+				<br>
+				Other cards act on their own, and do not need to modify a selected card in the noble line.
+				<br>
+				Some of these cards, like "Escape!", modify all the cards in the noble deck. Click on "Escape!" and then click on the "Use Selected Action Card" button, and the action card's effect will take place.
+				<br>
+				Other cards of this type are cards like "Church Support", which award bonus points for each noble you have selected that fits into a specific class - blue, gray, purple, red or green.
+				<br>
+				<br>
+				It is also acceptable not to use an action card in an individual turn! If you want, you can simply skip this step - and then you'll have an extra action card to play with next turn.
+				<br>
+				<br>
+				The next and final step of a turn in Guillotine is to collect the noble at the top of the noble line. To do this, simply click the button above the noble line that reads "Execute" and the noble's point value will be added to your score!
+				<br>
+				<br>
+				Your turn is now over! It's now your opponent's turn to go through the same process.
+				<br>
+				<br>
+				After the entire noble line is empty, the day of play is over. If you've just finished the first or second day, the game will give you a score update and then redeal 12 more nobles into the noble line to start the process all over again.
+				<br>
+				<br>
+				Note that at the end of a day, you will keep your same hand of action cards to start the next day.
+				<br>
+				<br>
+				After the end of the third day, the game is over! The player with the most points wins.
+			</p>
   	  	</div>
   	</div>
 	<script src="scripts/nobles.js"></script>

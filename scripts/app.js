@@ -125,21 +125,20 @@ const assembleActions = () => {
 const buttonFunction = () => {
 	$('.inLine').on('click', (e) => {
 		if ($($($(e.target)[0]).parent()[0]).hasClass('inLine')){
-			$($($(e.target)[0]).parent()[0]).addClass('clicked')
+			$($($(e.target)[0]).parent()[0]).addClass('clicked');
+			buttonRefunction();
 		} else {
 			$(e.target).addClass('clicked');
+			buttonRefunction();
 		}
-		buttonRefunction();
 	});
 	$('.inHand').on('click', (e) => {
-		console.log($($(e.target).parent()[0]).children().length);
-		console.log($($(e.target).parent()[0]).children());
-		console.log($(e.target).parent());
 		if ($($($(e.target)[0]).parent()[0]).hasClass('inHand')){
 			$($($(e.target)[0]).parent()[0]).addClass('clicked');
+			buttonRefunction();
 		} else {
 			$(e.target).addClass('clicked');
-		buttonRefunction();
+			buttonRefunction();
 		}
 	});
 };
@@ -147,6 +146,8 @@ const buttonFunction = () => {
 //Allows selected noble cards to be deselected
 //so that the player can rethink
 //and select a new card
+//else if is a bug fix for when
+//the h3 or p text inside the div is clicked
 const buttonRefunction = () => {
 	$('.inHand').on('click', (e) => {
 		if ($(e.target).hasClass('clicked')){
@@ -154,6 +155,7 @@ const buttonRefunction = () => {
 			console.log('test succeeds');
 			buttonFunction();
 		} else if ($($(e.target).parent()[0]).hasClass('clicked')){
+			console.log('test2 succeeds');
 			$($($(e.target)[0]).parent()[0]).removeClass('clicked');
 			buttonFunction();
 		}
@@ -300,8 +302,9 @@ const launchGame = () => {
 }
 
 //Starts the game after clicking a "Begin!" button
-$('.starter').on('click', (e) => {
-		$('.starter').remove();
+$('#starter').on('click', (e) => {
+		$('#starter').remove();
+		$('#rules').remove();
 		$('.opener').css('display', 'block');
 		$('.buttonhouse').css('display', 'block');
 		launchGame();
@@ -367,6 +370,14 @@ $('#collector').on('click', (e) => {
 	gamePlayers[0].takeNoble();
 })
 
+//displays rules upon clicking the rules button
+const instructionsOpen = () => {
+	$('#rules').on('click', (e) => {
+		$('#rulesModal').css('display', 'block');
+	})
+}
+instructionsOpen();
+
 //Installing functionality for modals
 const $modal = $('#myModal');
 
@@ -379,11 +390,11 @@ $span.on('click', (e) => {
     }
 });
 
-const $modal2 = $('#infoModal');
+const $modal2 = $('#rulesModal');
 
-const $span2 = $($('#closeInfo')[0]);
+const $span2 = $($('#closerules')[0]);
 
-$span2.on('click', (e) => {
+$modal2.on('click', (e) => {
     $modal2.css('display', 'none');
     $('button').removeClass('clicked');
 });

@@ -10,14 +10,31 @@ body {
 	width: 100%;
 }
 
-.starter {
-	margin-top: 70px;
-	margin-left: 25%;
+.buttons {
+	margin-top: 120px;
+}
+
+#starter {
+	display: block;
+	margin: 0 auto;
 	height: 60px;
 	width: 140px;
 	background-color: red;
 	font-size: 22px;
 	color: white;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+#rules {
+	display: block;
+	margin: 0 auto;
+	width: 170px;
+	background-color: silver;
+	font-size: 18px;
+	color: #5e0d0d;
+	border: 2px solid black;
+	border-radius: 5px;
 }
 
 #nameGame {
@@ -36,6 +53,7 @@ body {
 }
 
 img {
+	display: block;
 	position: relative;
     left: 30%;
     transform: translateX(-50%);
@@ -61,10 +79,8 @@ img {
 }
 
 #collector {
-	position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 2%;
+	display: block;
+	margin: 0 auto;
     height: 60px;
     width: 110px;
     font-size: 18px;
@@ -271,4 +287,9 @@ img {
 
 .confirmationbutton {
 	background-color: yellow;
+}
+
+#instruction-manual {
+	font-family: georgia;
+	color: black;
 }
