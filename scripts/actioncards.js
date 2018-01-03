@@ -817,6 +817,27 @@ const oneBack = {
 deckActions.push(oneBack);
 deckActions.push(oneBack);
 
+//Action Card: "Forward March"
+const guardToFront = {
+	name: 'Forward March',
+	description: 'Move a Palace Guard to the front of the line.',
+	takesNoble: false,
+	actionCard () {
+		for (i = 0; i < queueNobles.length; i++){
+			let guardsTracker = 0;
+			const cardName = $('.nobleLine').children()[i].innerHTML.split('<h3>')[1].split('<')[0];
+			if (cardName === 'Palace Guard' && guardsTracker === 0){
+				queueNobles.unshift(queueNobles[i]);
+				queueNobles.splice((i + 1), 1);
+				guardsTracker++;
+				$('.nobleLine').empty();
+				assembleNobles();
+			}
+		}
+	}
+}
+deckActions.push(guardToFront);
+
 //ACTION CARD DEAL
 
 const handStart = 4;
