@@ -196,6 +196,11 @@ class Player {
 	takeNoble(){
 		this.myNobles.push(queueNobles[0]);
 		queueNobles.shift();
+		for (let i = 0; i < queueNobles.length; i++){
+			if (queueNobles[i].name === 'Master Spy'){
+				console.log('test succeeds');
+			}
+		}
 		endTurn();
 		retotalPoints();
 		$('.nobleLine').empty();
