@@ -196,9 +196,12 @@ class Player {
 	takeNoble(){
 		this.myNobles.push(queueNobles[0]);
 		queueNobles.shift();
-		for (let i = 0; i < queueNobles.length; i++){
+		//adds character functionality for "Master Spy"
+		for (let i = 0; i < (queueNobles.length - 1); i++){
 			if (queueNobles[i].name === 'Master Spy'){
-				console.log('test succeeds');
+				const spyMove = queueNobles[i];
+				queueNobles.splice(i, 1);
+				queueNobles.push(spyMove);
 			}
 		}
 		endTurn();
